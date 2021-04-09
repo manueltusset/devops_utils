@@ -1,8 +1,8 @@
 version: "3.7"
 
 services:
-    oracle12:
-        container_name: oracle12
+    oracle12c:
+        container_name: oracle12c
         image: store/oracle/database-enterprise:12.2.0.1
         ports:
             - 1521:1521

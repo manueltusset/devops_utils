@@ -1,4 +1,6 @@
 composes/databases/oracle/12c/data
 composes/databases/oracle/18c/data
+composes/databases/oracle/18c/scripts
+composes/databases/oracle/18c/scriptsinit
 composes/databases/oracle/19c/data
 composes/databases/postgresql/10/data
