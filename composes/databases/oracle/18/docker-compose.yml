@@ -11,3 +11,6 @@ services:
             - ./data:/opt/oracle/oradata
             - ./scripts:/opt/oracle/scripts/setup
             - ./scriptsinit:/opt/oracle/scripts/startup
+        environment:
+            - ORACLE_PWD=111111
+            - ORACLE_CHARACTERSET=UTF8
