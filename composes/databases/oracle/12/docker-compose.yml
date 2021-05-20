@@ -9,3 +9,8 @@ services:
             - 5500:5500
         volumes:
             - ./data:/ORCL
+            - ./tablespaces:/ORCL/TABLESPACES
+        deploy:
+            resources: 
+                limits: 
+                    memory: '2G'

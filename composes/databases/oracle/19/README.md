@@ -1,0 +1,1 @@
+https://www.oracle.com/br/technical-resources/articles/database-performance/oracle-db19c-com-docker.html

@@ -1,0 +1,1 @@
+https://blogs.oracle.com/oraclemagazine/deliver-oracle-database-18c-express-edition-in-containers

@@ -1,4 +1,5 @@
 composes/databases/oracle/12/data
+composes/databases/oracle/12/tablespaces
 
 composes/databases/oracle/18/data
 composes/databases/oracle/18/scripts
