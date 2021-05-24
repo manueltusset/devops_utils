@@ -4,6 +4,7 @@ services:
     oracle12:
         container_name: oracle12
         image: manueltusset/oracle:12.2.0.1-ee
+        privileged: true
         ports:
             - 1521:1521
             - 5500:5500

@@ -4,6 +4,7 @@ services:
     oracle18:
         container_name: oracle18
         image: manueltusset/oracle:18.4.0-xe
+        privileged: true
         ports:
             - 1521:1521
             - 5500:5500

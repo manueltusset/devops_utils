@@ -1,15 +1,16 @@
 version: "3.7"
 
 services:
-    oracle19:
-        container_name: oracle19
-        image: manueltusset/oracle:19.3.0-xe
+    oracle11gR2:
+        container_name: oracle11gR2
         privileged: true
+        image: manueltusset/oracle:11.2.0.2-xe
         ports:
             - 1521:1521
             - 5500:5500
         volumes:
-            - ./data:/opt/oracle/oradata
+            - ./data:/ORCL
+            - ./tablespaces:/ORCL/TABLESPACES
         deploy:
             resources: 
                 limits: 
