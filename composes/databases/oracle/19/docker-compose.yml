@@ -10,6 +10,10 @@ services:
             - 5500:5500
         volumes:
             - ./data:/opt/oracle/oradata
+        shm_size: '2gb'
+        build:
+            context: .
+            shm_size: '2gb'
         deploy:
             resources: 
                 limits: 

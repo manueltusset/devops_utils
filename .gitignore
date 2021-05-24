@@ -1,3 +1,8 @@
+composes/databases/oracle/11gR2/data
+composes/databases/oracle/11gR2/data-bridge
+composes/databases/oracle/11gR2/initscripts
+composes/databases/oracle/11gR2/tablespaces
+
 composes/databases/oracle/12/data
 composes/databases/oracle/12/tablespaces
 

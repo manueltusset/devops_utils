@@ -7,10 +7,16 @@ services:
         image: manueltusset/oracle:11.2.0.2-xe
         ports:
             - 1521:1521
-            - 5500:5500
+            - 8080:8080
+        environment:
+            - ORACLE_PWD=111111
+            - ORACLE_SID=XE
         volumes:
-            - ./data:/ORCL
-            - ./tablespaces:/ORCL/TABLESPACES
+            - ./data:/opt/oracle/oradata
+            - ./data-bridge:/data-bridge
+            - ./initscripts:/u01/app/oracle/scripts/startup
+            - ./tablespaces:/opt/oracle/oradata/TABLESPACES
+        shm_size: '2gb'
         deploy:
             resources: 
                 limits: 
