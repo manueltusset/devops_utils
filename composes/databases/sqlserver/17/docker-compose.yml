@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+    sqlserver17:
+        container_name: sqlserver17
+        image: manueltusset/sqlserver:2017
+        ports:
+            - 1433:1433
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=111111
+            - MSSQL_PID=Express
+        deploy:
+            resources: 
+                limits: 
+                    memory: '2G'
