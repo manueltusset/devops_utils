@@ -10,11 +10,10 @@ services:
             - 5500:5500
         volumes:
             - ./data:/opt/oracle/oradata
-        shm_size: '2gb'
-        build:
-            context: .
-            shm_size: '2gb'
+        environment:
+            - ORACLE_PWD=111111
+            - ORACLE_CHARACTERSET=AL32UTF8
         deploy:
             resources: 
                 limits: 
-                    memory: '2G'
+                    memory: '3G'
