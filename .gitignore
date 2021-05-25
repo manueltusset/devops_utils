@@ -1,6 +1,6 @@
 composes/databases/oracle/11gR2/data
 composes/databases/oracle/11gR2/data-bridge
-composes/databases/oracle/11gR2/initscripts
+composes/databases/oracle/11gR2/startup
 composes/databases/oracle/11gR2/tablespaces
 
 composes/databases/oracle/12/data
@@ -8,7 +8,7 @@ composes/databases/oracle/12/tablespaces
 
 composes/databases/oracle/18/data
 composes/databases/oracle/18/scripts
-composes/databases/oracle/18/scriptsinit
+composes/databases/oracle/18/startup
 
 composes/databases/oracle/19/data
 

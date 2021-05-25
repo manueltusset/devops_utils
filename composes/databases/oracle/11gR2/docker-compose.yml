@@ -14,7 +14,7 @@ services:
         volumes:
             - ./data:/opt/oracle/oradata
             - ./data-bridge:/data-bridge
-            - ./initscripts:/u01/app/oracle/scripts/startup
+            - ./startup:/u01/app/oracle/scripts/startup
             - ./tablespaces:/opt/oracle/oradata/TABLESPACES
         shm_size: '2gb'
         deploy:

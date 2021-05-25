@@ -1,4 +1,4 @@
-## Processo para uso do oracle12
+## Processo para uso do oracle11gR2
 
 * Referência de desenvolvimento: https://ajitabhpandey.info/2018/02/running-oracle-11g-release-2-11-2-0-2-xe-in-docker-container/
 
@@ -10,7 +10,7 @@
 
 ### 2. Acesse o container para realizar os comandos necessários para a primeira configuração
 
-* No prompt de comando execute o seguinte script para acessar o sqlplus dentro do container do oracle12c:
+* No prompt de comando execute o seguinte script para acessar o sqlplus dentro do container do oracle11gR2:
 
 `docker exec -it --user oracle oracle11gR2 bash -c "sqlplus / as sysdba"`
 
