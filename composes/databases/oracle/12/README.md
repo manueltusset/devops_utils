@@ -47,3 +47,17 @@
 `GRANT CREATE SEQUENCE TO {base};`
 
 `GRANT CREATE TRIGGER TO {base};`
+
+# 3. Conexão no Oracle SQL Developer
+
+* Name: {base}
+
+* Username: {user}
+
+* Password: {pass}
+
+* Hostname: localhost
+
+* Port: 1521
+
+* Service Name: ORCLCDB.localdomain

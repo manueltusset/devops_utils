@@ -20,11 +20,11 @@
 
 * Para criar uma table space data, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE '/opt/oracle/oradata/TABLESPACES/TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE 'TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
 
 * Para criar uma table space indexes, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE '/opt/oracle/oradata/TABLESPACES/TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE 'TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
 
 * Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro {user} , {senha} e {base}:
 
@@ -43,3 +43,17 @@
 `GRANT CREATE SEQUENCE TO {base};`
 
 `GRANT CREATE TRIGGER TO {base};`
+
+# 3. Conexão no Oracle SQL Developer
+
+* Name: {base}
+
+* Username: {user}
+
+* Password: {pass}
+
+* Hostname: localhost
+
+* Port: 1521
+
+* SID: XE
