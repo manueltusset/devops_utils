@@ -8,6 +8,8 @@ services:
         ports:
             - 1521:1521
             - 5500:5500
+        environment:
+            - ORACLE_CHARACTERSET=AL32UTF8
         volumes:
             - ./data:/ORCL
             - ./tablespaces:/ORCL/TABLESPACES
