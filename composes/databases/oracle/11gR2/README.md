@@ -6,7 +6,7 @@
 
 * Na pasta composes/databases/oracle/11gR2 execute: 
 
-`docker-compose -d up`
+`docker-compose up -d`
 
 ### 2. Acesse o container para realizar os comandos necessários para a primeira configuração
 

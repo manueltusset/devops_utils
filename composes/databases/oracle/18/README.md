@@ -6,7 +6,7 @@
 
 * Na pasta composes/databases/oracle/18 execute: 
 
-`docker-compose -d up`
+`docker-compose up -d`
 
 ### 2. Acesse o container para realizar os comandos necessários para a primeira configuração
 
@@ -20,15 +20,7 @@
 
 * Altere a sessão do oracle:
 
-`alter system set "_ORACLE_SCRIPT"=true SCOPE=SPFILE;`
-
-* Execute a query abaixo para buscar os serviços:
-
-`SELECT PDB FROM V$SERVICES WHERE PDB <> 'CDB$ROOT';`
-
-* O valor retornado na query acima, deve ser colocado no parâmetro {value_return}:
-
-`ALTER SESSION SET CONTAINER={value_return};`
+`alter session set "_ORACLE_SCRIPT"=true;`
 
 * Para criar uma table space data, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
@@ -38,7 +30,7 @@
 
 `CREATE TABLESPACE TSI_{base} LOGGING DATAFILE '/opt/oracle/oradata/TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
 
-* Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro {user} , {senha} e {base}:
+* Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro {user} , {pass} e {base}:
 
 `CREATE USER {user} IDENTIFIED BY {pass} DEFAULT TABLESPACE TSI_{base} QUOTA UNLIMITED ON TSD_{base} QUOTA UNLIMITED ON TSI_{base};`
 
