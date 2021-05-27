@@ -12,7 +12,6 @@ services:
             - ORACLE_CHARACTERSET=AL32UTF8
         volumes:
             - ./data:/ORCL
-            - ./tablespaces:/ORCL/TABLESPACES
         deploy:
             resources: 
                 limits: 

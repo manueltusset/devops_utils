@@ -13,9 +13,7 @@ services:
             - ORACLE_SID=XE
         volumes:
             - ./data:/opt/oracle/oradata
-            - ./data-bridge:/data-bridge
             - ./startup:/u01/app/oracle/scripts/startup
-            - ./tablespaces:/opt/oracle/oradata/TABLESPACES
         shm_size: '2gb'
         deploy:
             resources: 

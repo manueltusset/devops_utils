@@ -20,15 +20,15 @@
 
 * Altere a sessão do oracle:
 
-`alter session set “_ORACLE_SCRIPT”=true;`
+`alter session set "_ORACLE_SCRIPT"=true;`
 
 * Para criar uma table space data, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE '/ORCL/TABLESPACES/TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE '/ORCL/TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
 
 * Para criar uma table space indexes, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE '/ORCL/TABLESPACES/TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE '/ORCL/TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
 
 * Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro {user} , {senha} e {base}:
 

@@ -10,7 +10,7 @@
 
 ### 2. Acesse o container para realizar os comandos necessários para a primeira configuração
 
-* No prompt de comando execute o seguinte script para acessar o sqlplus dentro do container do oracle11gR2:
+* No prompt de comando execute o seguinte script para acessar o sqlplus dentro do container do oracle11gR2v:
 
 `docker exec -it --user oracle oracle11gR2 bash -c "sqlplus / as sysdba"`
 
@@ -20,11 +20,11 @@
 
 * Para criar uma table space data, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE 'TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE '/opt/oracle/oradata/TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
 
 * Para criar uma table space indexes, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE 'TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE '/opt/oracle/oradata/TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
 
 * Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro {user} , {senha} e {base}:
 
