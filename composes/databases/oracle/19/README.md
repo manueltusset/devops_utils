@@ -4,7 +4,7 @@
 
 ### 1. Inicie o container do oracle a partir do docker-compose
 
-* Na pasta composes/databases/oracle/18 execute: 
+* Na pasta composes/databases/oracle/19 execute: 
 
 `docker-compose up -d`
 
@@ -22,45 +22,45 @@
 
 `alter session set "_ORACLE_SCRIPT"=true;`
 
-* Para criar uma table space data, execute o script seguinte substituindo o parâmetro SESUITE19C pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
+* Para criar uma table space data, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSD_SESUITE19C LOGGING DATAFILE '/opt/oracle/oradata/TSD_SESUITE19C.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSD_{base} LOGGING DATAFILE '/opt/oracle/oradata/TSD_{base}.DBF' SIZE 2000M AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;`
 
-* Para criar uma table space indexes, execute o script seguinte substituindo o parâmetro SESUITE19C pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
+* Para criar uma table space indexes, execute o script seguinte substituindo o parâmetro {base} pelo nome da base de dados (importante salientar para criar em maiúsculo as nomenclaturas)
 
-`CREATE TABLESPACE TSI_SESUITE19C LOGGING DATAFILE '/opt/oracle/oradata/TSI_SESUITE19C.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
+`CREATE TABLESPACE TSI_{base} LOGGING DATAFILE '/opt/oracle/oradata/TSI_{base}.DBF' SIZE 200M AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;`
 
-* Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro SESUITE19C , 111111 e SESUITE19C:
+* Para criar o usuário de acesso para os table space e table indexes criados, execute o comando abaixo substituindo o parâmetro {user} , {pass} e {base}:
 
-`CREATE USER SESUITE19C IDENTIFIED BY 111111 DEFAULT TABLESPACE TSI_SESUITE19C QUOTA UNLIMITED ON TSD_SESUITE19C QUOTA UNLIMITED ON TSI_SESUITE19C;`
+`CREATE USER {user} IDENTIFIED BY {pass} DEFAULT TABLESPACE TSI_{base} QUOTA UNLIMITED ON TSD_{base} QUOTA UNLIMITED ON TSI_{base};`
 
 * Após criado o usuário e tablespaces, precisamos garantir acesso para correto funcionamento:
 
-`GRANT CREATE SESSION TO SESUITE19C;`
+`GRANT CREATE SESSION TO {base};`
 
-`GRANT CREATE PROCEDURE TO SESUITE19C;`
+`GRANT CREATE PROCEDURE TO {base};`
 
-`GRANT CREATE VIEW TO SESUITE19C;`
+`GRANT CREATE VIEW TO {base};`
 
-`GRANT CREATE TABLE TO SESUITE19C;`
+`GRANT CREATE TABLE TO {base};`
 
-`GRANT CREATE SEQUENCE TO SESUITE19C;`
+`GRANT CREATE SEQUENCE TO {base};`
 
-`GRANT CREATE TRIGGER TO SESUITE19C;`
+`GRANT CREATE TRIGGER TO {base};`
 
 ### 3. Conexão no Oracle SQL Developer
 
-* Name: SESUITE19C
+* Name: {base}
 
-* Username: SESUITE19C
+* Username: {base}
 
-* Password: 111111
+* Password: {pass}
 
 * Hostname: localhost
 
 * Port: 1521
 
-* SID: orclpdb1
+* SID: XE
 
 ### 4. Acessando o database home oracle
 
