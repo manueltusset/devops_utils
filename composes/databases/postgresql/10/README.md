@@ -1,12 +1,12 @@
-## Processo para uso do postgresql 10
+# Processo para uso do postgresql 10
 
-### 1. Inicie o container do postgres e pgadmin a partir do docker-compose
+## 1. Inicie o container do postgres e pgadmin a partir do docker-compose
 
 * Na pasta composes/databases/postgresql/10 execute: 
 
 `docker-compose up -d`
 
-### 2. Inspecione o container postgresql10 para capturar o IP do mesmo
+## 2. Inspecione o container postgresql10 para capturar o IP do mesmo
 
 * No prompt de comando execute o seguinte script para inspecionar o container do pg10:
 
@@ -16,17 +16,17 @@
 
 `"IPAddress": "x.x.x.x"`
 
-### 3. Acesse o pgAdmin 4 via browser
+## 3. Acesse o pgAdmin 4 via browser
 
-* Com o link http://localhost:55432 acesse o pgAdmin 4 para cadastrar um novo server:
+### Com o link http://localhost:55432 acesse o pgAdmin 4 para cadastrar um novo server:
 
-Na tela Welcome do pgAdmin 4, clique em "Add New Server"
+1. Na tela **Welcome** do pgAdmin 4, clique em **Add New Server**
 
-* Preenchendo as informações para cadastro na aba General:
+### Preenchendo as informações para cadastro na aba General:
 
-Name: Server
+1. Name: Server
 
-* Preenchendo as informações para cadastro na aba Connection:
+### Preenchendo as informações para cadastro na aba Connection:
 
 1. Host: Informe o ip que foi copiado ao inspecionar o container do postgresql10 no passo 2
 
@@ -38,11 +38,11 @@ Name: Server
 
 5. Password: postgres
 
-* Para salvar a conexão, basta clicar em save
+6. Feito isso, clique em save.
 
-### 4. Processo de criação de database
+## 4. Processo de criação de database
 
-* Criando login
+### Criando login
 
 1. Na coluna esquerda, dentro do server cadastrado, cloque com o botão direito em "Login/Group Roles" > "Create" > "Login/Group Role".
 
@@ -54,7 +54,7 @@ Name: Server
 
 5. Na aba Membership, nos 2 campos informe o grupo postgres.
 
-* Criando TABLESPACES_DATA
+### Criando TABLESPACES_DATA
 
 1. Na pasta composes/databases/postgresql/10/data/pgdata, crie a pasta TABLESPACES_DATA
 
@@ -68,7 +68,7 @@ Name: Server
 
 6. Feito isso, clique em save.
 
-* Criando TABLESPACES_INDEXES
+### Criando TABLESPACES_INDEXES
 
 1. Na pasta composes/databases/postgresql/10/data/pgdata, crie a pasta TABLESPACES_INDEXES
 
@@ -82,7 +82,7 @@ Name: Server
 
 6. Feito isso, clique em save.
 
-* Criando Database
+### Criando Database
 
 1. Na coluna esquerda, clique com o botão direito em "Databases" > "Create" > "Database...".
 
