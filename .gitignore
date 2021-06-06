@@ -13,3 +13,4 @@ composes/databases/oracle/18/startup
 composes/databases/oracle/19/data
 
 composes/databases/postgresql/10/data
+composes/databases/postgresql/12/data
