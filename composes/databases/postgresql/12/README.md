@@ -1,16 +1,16 @@
-# Processo para uso do postgresql 10
+# Processo para uso do postgresql 12
 
 ## 1. Inicie o container do postgres e pgadmin a partir do docker-compose
 
-* Na pasta composes/databases/postgresql/10 execute: 
+* Na pasta composes/databases/postgresql/12 execute: 
 
 `docker-compose up -d`
 
-## 2. Inspecione o container postgresql10 para capturar o IP do mesmo
+## 2. Inspecione o container postgresql12 para capturar o IP do mesmo
 
-* No prompt de comando execute o seguinte script para inspecionar o container do pg10:
+* No prompt de comando execute o seguinte script para inspecionar o container do pg12:
 
-`docker inspect postgresql10`
+`docker inspect postgresql12`
 
 * Após inspecionado o container, copie o valor da key **IPAddress**:
 
@@ -28,7 +28,7 @@
 
 ### Preenchendo as informações para cadastro na aba Connection:
 
-1. Host: Informe o ip que foi copiado ao inspecionar o container do postgresql10 no passo 2
+1. Host: Informe o ip que foi copiado ao inspecionar o container do postgresql12 no passo 2
 
 2. Port: 5432
 
@@ -56,7 +56,7 @@
 
 ### Criando TABLESPACES_DATA
 
-1. Na pasta composes/databases/postgresql/10/data/pgdata, crie a pasta TABLESPACES_DATA
+1. Na pasta composes/databases/postgresql/12/data/pgdata, crie a pasta TABLESPACES_DATA
 
 2. No pgAdmin 4, na coluna esquerda, clique com o botão direito em "Tablespaces" > "Create" > "Tablespace...".
 
@@ -70,7 +70,7 @@
 
 ### Criando TABLESPACES_INDEXES
 
-1. Na pasta composes/databases/postgresql/10/data/pgdata, crie a pasta TABLESPACES_INDEXES
+1. Na pasta composes/databases/postgresql/12/data/pgdata, crie a pasta TABLESPACES_INDEXES
 
 2. No pgAdmin 4, na coluna esquerda, clique com o botão direito em "Tablespaces" > "Create" > "Tablespace...".
 
