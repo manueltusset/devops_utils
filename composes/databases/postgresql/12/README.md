@@ -1,0 +1,95 @@
+## Processo para uso do postgresql 12
+
+### 1. Inicie o container do postgres e pgadmin a partir do docker-compose
+
+* Na pasta composes/databases/postgresql/12 execute: 
+
+`docker-compose up -d`
+
+### 2. Inspecione o container postgresql12 para capturar o IP do mesmo
+
+* No prompt de comando execute o seguinte script para inspecionar o container do pg12:
+
+`docker inspect postgresql12`
+
+* Após inspecionado o container, copie o valor **IPAddress**:
+
+`"IPAddress": "x.x.x.x"`
+
+### 3. Acesse o pgAdmin 4 via browser
+
+* Com o link http://localhost:55432 acesse o pgAdmin 4 para cadastrar um novo server:
+
+`Na tela Welcome do pgAdmin 4, clique em "Add New Server"`
+
+* Preenchendo as informações para cadastro na aba General:
+
+`Name: Server`
+
+* Preenchendo as informações para cadastro na aba Connection:
+
+`Host: Informe o ip que foi copiado ao inspecionar o container do postgresql12 no passo 2`
+
+`Port: 5432`
+
+`Maintenance database: postgres`
+
+`Username: postgres`
+
+`Password: postgres`
+
+* Para salvar a conexão, basta clicar em save
+
+### 4. Processo de criação de database
+
+* Criando login
+
+1. `Na coluna esquerda, dentro do server cadastrado, cloque com o botão direito em "Login/Group Roles" > "Create" > "Login/Group Role".`
+
+2. `Na aba General, informe o nome do mesmo.`
+
+3. `Na aba Definition, informe a senha do mesmo.`
+
+4. `Na aba Privileges, selecione Can login? e Superuser?, assim o restante das opções serão selecionadas.`
+
+5. `Na aba Membership, nos 2 campos informe o grupo postgres.`
+
+* Criando TABLESPACES_DATA
+
+1. `Na pasta composes/databases/postgresql/12/data/pgdata, crie a pasta TABLESPACES_DATA`
+
+2. `No pgAdmin 4, na coluna esquerda, clique com o botão direito em "Tablespaces" > "Create" > "Tablespace...".`
+
+3. `Na aba General, informe o nome da tablespace, a qual será chamada de TABLESPACES_DATA`.
+
+4. `Na aba General, informe também o Owner, que será o usuário criado no passo 4`
+
+5. `Na aba definition, informe o caminho da pasta criada nos passos anteriores no campo Location, porém sem as aspas.`
+
+6. `Feito isso, clique em save.`
+
+* Criando TABLESPACES_INDEXES
+
+1. `Na pasta composes/databases/postgresql/12/data/pgdata, crie a pasta TABLESPACES_INDEXES`
+
+2. `No pgAdmin 4, na coluna esquerda, clique com o botão direito em "Tablespaces" > "Create" > "Tablespace...".`
+
+3. `Na aba General, informe o nome da tablespace, a qual será chamada de TABLESPACES_INDEXES`.
+
+4. `Na aba General, informe também o Owner, que será o usuário criado no passo 4`
+
+5. `Na aba definition, informe o caminho da pasta criada nos passos anteriores no campo Location, porém sem as aspas.`
+
+6. `Feito isso, clique em save.`
+
+* Criando Database
+
+1. `Na coluna esquerda, clique com o botão direito em "Databases" > "Create" > "Database...".`
+
+2. `Na aba General, informe o nome do database no campo "Database".`
+
+3. `Ainda na aba General, informe o usuário criado no campo "Owner".`
+
+4. `Na aba Definition, informe no campo "Tablespace" a TABLESPACES_DATA criada anteriormente.`
+
+5. `Feito isso, clique em save.`
