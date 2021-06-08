@@ -14,3 +14,6 @@ composes/databases/oracle/19/data
 
 composes/databases/postgresql/10/data
 composes/databases/postgresql/12/data
+
+composes/databases/sqlserver/17/data
+composes/databases/sqlserver/19/data

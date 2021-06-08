@@ -6,11 +6,25 @@ services:
         image: manueltusset/sqlserver:2019
         ports:
             - 1433:1433
+        networks:
+            - default
+        volumes:
+            - ./data:/var/opt/mssql/data
         environment:
             - ACCEPT_EULA=Y
-            - SA_PASSWORD=111111
+            - SA_PASSWORD=Sqlserver19
             - MSSQL_PID=Express
         deploy:
             resources: 
                 limits: 
                     memory: '2G'
+    mssql-tools:
+        container_name: mssql-tools
+        image: manueltusset/sqlserver:mssql-tools
+        networks:
+            - default
+        deploy:
+            resources: 
+                limits: 
+                    memory: '1G'
+        command: 'ping localhost'

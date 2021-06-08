@@ -8,9 +8,23 @@ services:
             - 1433:1433
         environment:
             - ACCEPT_EULA=Y
-            - SA_PASSWORD=111111
+            - SA_PASSWORD=Sqlserver17
             - MSSQL_PID=Express
+        networks:
+            - default
+        volumes:
+            - ./data:/var/opt/mssql/data
         deploy:
             resources: 
                 limits: 
                     memory: '2G'
+    mssql-tools:
+        container_name: mssql-tools
+        image: manueltusset/sqlserver:mssql-tools
+        networks:
+            - default
+        deploy:
+            resources: 
+                limits: 
+                    memory: '1G'
+        command: 'ping localhost'
