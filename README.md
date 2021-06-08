@@ -7,7 +7,7 @@
 * Oracle Database em Containers Docker
 * PostgreSQL em Containers Docker
 * SQLServer em Containers Docker
-* MySQL em Containers Docker
+* MySQL em Containers Docker (EM BREVE)
 
 `O repositório é atualizado semanalmente, caso algum dos recursos esteja indisponível, abra uma issue para que seja resolvido o mais breve possível. `
 
