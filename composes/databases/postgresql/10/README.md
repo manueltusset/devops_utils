@@ -64,7 +64,7 @@
 
 4. Na aba General, informe também o Owner, que será o usuário criado no passo 4
 
-5. Na aba definition, informe o caminho da pasta criada nos passos anteriores no campo Location, porém sem as aspas.
+5. Na aba definition, informe o caminho /var/lib/postgresql/data/pgdata/TABLESPACES_DATA no campo Location, porém sem as aspas.
 
 6. Feito isso, clique em save.
 
@@ -78,7 +78,7 @@
 
 4. Na aba General, informe também o Owner, que será o usuário criado no passo 4
 
-5. Na aba definition, informe o caminho da pasta criada nos passos anteriores no campo Location, porém sem as aspas.
+5. Na aba definition, informe o caminho /var/lib/postgresql/data/pgdata/TABLESPACES_INDEXES no campo Location, porém sem as aspas.
 
 6. Feito isso, clique em save.
 
