@@ -1,5 +1,7 @@
 # Processo para uso do postgresql 12
 
+* Referência de desenvolvimento: https://hub.docker.com/_/postgres
+
 ## 1. Inicie o container do postgres e pgadmin a partir do docker-compose
 
 * Na pasta composes/databases/postgresql/12 execute: 

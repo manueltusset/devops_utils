@@ -1,5 +1,7 @@
 # Processo para uso do sqlserver 17
 
+* Referência de desenvolvimento: https://hub.docker.com/_/microsoft-mssql-server
+
 ## 1. Inicie o container do sqlserver a partir do docker-compose
 
 * Na pasta composes/databases/sqlserver/17 execute: 
