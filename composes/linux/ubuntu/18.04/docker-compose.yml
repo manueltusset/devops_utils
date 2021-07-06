@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    ubuntu18_04:
+        container_name: ubuntu18_04
+        privileged: true
+        image: ubuntu:18.04
+        deploy:
+            resources: 
+                limits: 
+                    memory: '3G'

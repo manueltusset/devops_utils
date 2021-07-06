@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    oraclelinux7:
+        container_name: oraclelinux7
+        privileged: true
+        image: oraclelinux:7.9
+        deploy:
+            resources: 
+                limits: 
+                    memory: '3G'

@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    oraclelinux8:
+        container_name: oraclelinux8
+        privileged: true
+        image: oraclelinux:8.4
+        deploy:
+            resources: 
+                limits: 
+                    memory: '3G'

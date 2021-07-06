@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    centos8:
+        container_name: centos8
+        privileged: true
+        image: centos:8
+        deploy:
+            resources: 
+                limits: 
+                    memory: '3G'

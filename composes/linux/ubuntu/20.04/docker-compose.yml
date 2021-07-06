@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    ubuntu20_04:
+        container_name: ubuntu20_04
+        privileged: true
+        image: ubuntu:20.04
+        deploy:
+            resources: 
+                limits: 
+                    memory: '3G'
