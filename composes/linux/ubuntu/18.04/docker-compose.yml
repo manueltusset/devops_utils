@@ -9,3 +9,4 @@ services:
             resources: 
                 limits: 
                     memory: '3G'
+        command: ping localhost
