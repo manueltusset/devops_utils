@@ -5,6 +5,8 @@ services:
         container_name: oracle19
         image: manueltusset/oracle:19.3.0-xe
         privileged: true
+        networks:
+            - oraclenetwork
         ports:
             - 1521:1521
             - 5500:5500
@@ -20,3 +22,6 @@ services:
             resources: 
                 limits: 
                     memory: '3G'
+networks:
+    oraclenetwork:
+        name: oraclenetwork

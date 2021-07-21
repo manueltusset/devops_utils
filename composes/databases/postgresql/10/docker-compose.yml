@@ -8,7 +8,7 @@ services:
             - 8080:8080
             - 5432:5432
         networks:
-            - default
+            - pgnetwork
         volumes:
             - ./data:/var/lib/postgresql/data
         environment:
@@ -25,7 +25,10 @@ services:
         ports:
             - 55432:80
         networks:
-            - default
+            - pgnetwork
         environment:
             - PGADMIN_DEFAULT_PASSWORD=postgres
             - PGADMIN_DEFAULT_EMAIL=seuemail@gmail.com
+networks:
+    pgnetwork:
+        name: pgnetwork

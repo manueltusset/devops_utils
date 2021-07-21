@@ -5,6 +5,8 @@ services:
         container_name: oracle12
         image: manueltusset/oracle:12.2.0.1-ee
         privileged: true
+        networks:
+            - oraclenetwork
         ports:
             - 1521:1521
             - 5500:5500
@@ -16,3 +18,6 @@ services:
             resources: 
                 limits: 
                     memory: '2G'
+networks:
+    oraclenetwork:
+        name: oraclenetwork

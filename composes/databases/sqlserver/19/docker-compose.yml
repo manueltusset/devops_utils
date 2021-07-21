@@ -7,7 +7,7 @@ services:
         ports:
             - 1433:1433
         networks:
-            - default
+            - sqlnetwork
         volumes:
             - ./data:/var/opt/mssql/data
         environment:
@@ -22,9 +22,12 @@ services:
         container_name: mssql-tools
         image: manueltusset/sqlserver:mssql-tools
         networks:
-            - default
+            - sqlnetwork
         deploy:
             resources: 
                 limits: 
                     memory: '1G'
         command: 'ping localhost'
+networks:
+    sqlnetwork:
+        name: sqlnetwork
