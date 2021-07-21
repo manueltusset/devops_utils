@@ -44,7 +44,7 @@
 
 1. Crie o usuário para conectar sua aplicação:
 
-`CREATE LOGIN sesuite WITH PASSWORD = 'Menino!@12';`
+`CREATE LOGIN <User> WITH PASSWORD = '<Password>';`
 
 `GO`
 
