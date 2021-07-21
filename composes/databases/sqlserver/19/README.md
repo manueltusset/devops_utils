@@ -39,3 +39,47 @@
 3. Rodado o comando acima, rode o comando: `GO`
 
 4. Deverá retornar com a versão do microsoft sqlserver, a qual é `Microsoft SQL Server 2019 Express Edition`
+
+### Criando acessos
+
+1. Crie o usuário para conectar sua aplicação:
+
+`CREATE LOGIN sesuite WITH PASSWORD = 'Menino!@12';`
+
+`GO`
+
+2. Crie o database
+
+`CREATE DATABASE <Database>`
+
+`GO`
+
+3. Altere a propriedades ALLOW_SNAPSHOT_ISOLATION_ON:
+
+`ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON;`
+
+`GO`
+
+4. Altere a propriedade READ_COMMITTED_SNAPSHOT:
+
+`ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON;`
+
+`GO`
+
+5. Altere o User Mapping para considerar o usuário como db_owner:
+
+`USE <Database>`
+
+`GO`
+
+`CREATE USER <User> FOR LOGIN <User>`
+
+`GO`
+
+`USE <Database>`
+
+`GO`
+
+`ALTER ROLE [db_owner] ADD MEMBER <User>`
+
+`GO`
