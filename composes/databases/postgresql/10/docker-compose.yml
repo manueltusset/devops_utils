@@ -21,7 +21,7 @@ services:
                     memory: '2G'
     pgadmin4:
         container_name: pgadmin4
-        image: manueltusset/postgresql:pgadmin4
+        image: manueltusset/postgresql:pgadmin4-10
         ports:
             - 55432:80
         networks:
