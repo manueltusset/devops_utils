@@ -8,41 +8,7 @@
 
 `docker-compose up -d`
 
-## 2. Inspecione o container postgresql12 para capturar o IP do mesmo
-
-* No prompt de comando execute o seguinte script para inspecionar o container do pg12:
-
-`docker inspect postgresql12`
-
-* Após inspecionado o container, copie o valor da key **IPAddress**:
-
-`"IPAddress": "x.x.x.x"`
-
-## 3. Acesse o pgAdmin 4 via browser
-
-### Com o link http://localhost:55432 acesse o pgAdmin 4 para cadastrar um novo server:
-
-1. Na tela **Welcome** do pgAdmin 4, clique em **Add New Server**
-
-### Preenchendo as informações para cadastro na aba General:
-
-1. Name: Server
-
-### Preenchendo as informações para cadastro na aba Connection:
-
-1. Host: Informe o ip que foi copiado ao inspecionar o container do postgresql12 no passo 2
-
-2. Port: 5432
-
-3. Maintenance database: postgres
-
-4. Username: postgres
-
-5. Password: postgres
-
-6. Feito isso, clique em save.
-
-## 4. Processo de criação de database
+## 2. Processo de criação de database
 
 ### Criando login
 
