@@ -17,13 +17,22 @@ Vagrant.configure("2") do |config|
 
     config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
 
-    config.vm.provision "shell", inline: <<-SCRIPT
-    echo "meu teste"
-    SCRIPT
+    config.vm.provision "shell", inline: <<-SHELL
+        echo #{ENV['TAG']} >> C:\\teste.txt
+        echo #{ENV['BRANCH']} >> C:\\teste.txt
+    SHELL
 
-    config.vm.provider "hyperv" do |v|
-        v.cpus = 2
-        v.maxmemory = 2048
-        v.linked_clone = true
+    config.vm.provider "hyperv" do |hv|
+        hv.cpus = 4
+        hv.vmname = "windows_server_2019"
+        hv.memory = 6144
+        hv.maxmemory = 6144
+        hv.linked_clone = true
     end
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.cpus = 4
+        vb.memory = "6144"
+        vb.name = "windows_server_2019"
+      end
 end
