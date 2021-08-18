@@ -18,6 +18,8 @@ composes/databases/postgresql/12/data
 composes/databases/sqlserver/17/data
 composes/databases/sqlserver/19/data
 
+composes/portainer/portainer_data
+
 machines/windows/windows_server_2012/.vagrant
 machines/windows/windows_server_2016/.vagrant
 machines/windows/windows_server_2019/.vagrant
