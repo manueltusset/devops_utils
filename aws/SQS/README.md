@@ -1,4 +1,4 @@
-# Testes com o AWS-StepFunctionsLocal
+# Testes com o AWS Localstack
 
 ## O que é o Amazon SQS ?
 
