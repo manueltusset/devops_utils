@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+    aws-stepfunctions:
+        container_name: aws-stepfunctions
+        image: amazon/aws-stepfunctions-local
+        ports:
+            - 8083:8083
+        environment:
+            - AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}
+            - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+            - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+            - WAIT_TIME_SCALE=${WAIT_TIME_SCALE}
+            - LAMBDA_ENDPOINT=${LAMBDA_ENDPOINT}
+            - BATCH_ENDPOINT=${BATCH_ENDPOINT}
+            - DYNAMODB_ENDPOINT=${DYNAMODB_ENDPOINT}
+            - ECS_ENDPOINT=${ECS_ENDPOINT}
+            - GLUE_ENDPOINT=${GLUE_ENDPOINT}
+            - SAGE_MAKER_ENDPOINT=${SAGE_MAKER_ENDPOINT}
+            - SQS_ENDPOINT=${SQS_ENDPOINT}
+            - SNS_ENDPOINT=${SNS_ENDPOINT}
