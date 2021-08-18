@@ -6,13 +6,17 @@
 
 * Na pasta composes/databases/sqlserver/19 execute: 
 
-`docker-compose up -d`
+```shell
+docker-compose up -d
+```
 
 ## 2. Inspecione o container sqlserver19 para capturar o IP do mesmo
 
 * No prompt de comando execute o seguinte script para inspecionar o container do pg12:
 
-`docker inspect sqlserver19`
+```shell
+docker inspect sqlserver19
+```
 
 * Após inspecionado o container, copie o valor da key **IPAddress**:
 
@@ -22,64 +26,97 @@
 
 ### Acesse o container mssql-tools:
 
-`docker exec -it mssql-tools bash`
+```shell
+docker exec -it mssql-tools bash
+```
 
 ### Conecte no banco de dados via sqlcmd
 
 * **Importante salientar que deve substituir o parametro {IP} pelo ip copiado no passo 2.**
 
-`sqlcmd -S {IP} -U sa -P Sqlserver19`
+```shell
+sqlcmd -S {IP} -U sa -P Sqlserver19
+```
 
 ### Checando funcionamento do banco de dados
 
 1. Ao rodar o sqlcmd acima, deve retornar na próxima linha de comando a seguinte expressão: 1>
 
-2. Após isso, rode o seguinte comando: `SELECT @@VERSION`
+2. Após isso, rode o seguinte comando para verificar a versão do database: 
 
-3. Rodado o comando acima, rode o comando: `GO`
+```shell
+SELECT @@VERSION;
 
-4. Deverá retornar com a versão do microsoft sqlserver, a qual é `Microsoft SQL Server 2019 Express Edition`
+GO;
+```
 
-### Criando acessos
+3. Deverá retornar com a versão do microsoft sqlserver, a qual é `Microsoft SQL Server 2019 Express Edition`
+
+### Criando acessos e crie o database
 
 1. Crie o usuário para conectar sua aplicação:
 
-`CREATE LOGIN <User> WITH PASSWORD = '<Password>';`
+```shell
+CREATE LOGIN <User> WITH PASSWORD = '<Password>';
 
-`GO`
+GO;
+```
 
 2. Crie o database
 
-`CREATE DATABASE <Database>`
+```shell
+CREATE DATABASE <Database>;
 
-`GO`
+GO;
+```
 
-3. Altere a propriedades ALLOW_SNAPSHOT_ISOLATION_ON:
+## Altere as propriedades do database
 
-`ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON;`
+1. Altere a propriedades ALLOW_SNAPSHOT_ISOLATION_ON:
 
-`GO`
+```shell
+ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON;
 
-4. Altere a propriedade READ_COMMITTED_SNAPSHOT:
+GO;
+```
 
-`ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON;`
+2. Altere a propriedade READ_COMMITTED_SNAPSHOT:
 
-`GO`
+```shell
+ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON;
 
-5. Altere o User Mapping para considerar o usuário como db_owner:
+GO;
+```
 
-`USE <Database>`
+## Altere o user criado para db_owner
 
-`GO`
+1. Force o uso do database para o comando no passo 2:
 
-`CREATE USER <User> FOR LOGIN <User>`
+```shell
+USE <Database>;
 
-`GO`
+GO;
+```
 
-`USE <Database>`
+2. Vincule o login do usuário:
 
-`GO`
+```shell
+CREATE USER <User> FOR LOGIN <User>;
 
-`ALTER ROLE [db_owner] ADD MEMBER <User>`
+GO;
+```
 
-`GO`
+3. Force o uso do database para o comando no passo 4: 
+```shell
+USE <Database>;
+
+GO;
+```
+
+4. Altere as permissões do usuário criado para db_owner:
+
+```shell
+ALTER ROLE [db_owner] ADD MEMBER <User>;
+
+GO;
+```

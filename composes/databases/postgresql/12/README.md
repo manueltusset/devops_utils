@@ -6,7 +6,9 @@
 
 * Na pasta composes/databases/postgresql/12 execute: 
 
-`docker-compose up -d`
+```shell
+docker-compose up -d
+```
 
 ## 2. Processo de criação de database
 
