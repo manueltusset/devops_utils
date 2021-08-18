@@ -1,0 +1,1 @@
+# Recursos da AWS locais para testes de desenvolvimento
