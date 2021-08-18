@@ -2,6 +2,14 @@
 
 ### Uso destinado para testes com sqs, dynamodb entre outros localmente
 
+1. Para inicializar o container para os testes:
+
 ```shell
-docker-compose up -d --env-file=aws-stepfunctions-local-credentials.txt
+docker-compose --env-file=aws-stepfunctions-local-credentials.txt up -d
+```
+
+2. Para parar o container:
+
+```shell
+docker-compose --env-file=aws-stepfunctions-local-credentials.txt down
 ```
