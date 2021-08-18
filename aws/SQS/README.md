@@ -6,7 +6,7 @@ O Amazon Simple Queue Service é um serviço de enfileiramento de mensagens dist
 
 * Referência: https://en.wikipedia.org/wiki/Amazon_Simple_Queue_Service
 
-### Uso destinado para testes com sqs, dynamodb entre outros localmente
+### Uso destinado para testes com SQS localmente
 
 1. Para inicializar o container do SQS:
 
