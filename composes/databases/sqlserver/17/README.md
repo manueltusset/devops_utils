@@ -6,13 +6,17 @@
 
 * Na pasta composes/databases/sqlserver/17 execute: 
 
-`docker-compose up -d`
+```shell
+docker-compose up -d
+```
 
 ## 2. Inspecione o container sqlserver17 para capturar o IP do mesmo
 
 * No prompt de comando execute o seguinte script para inspecionar o container do pg12:
 
-`docker inspect sqlserver17`
+```shell
+docker inspect sqlserver17
+```
 
 * Após inspecionado o container, copie o valor da key **IPAddress**:
 
@@ -22,21 +26,33 @@
 
 ### Acesse o container mssql-tools:
 
-`docker exec -it mssql-tools bash`
+```shell
+docker exec -it mssql-tools bash
+```
 
 ### Conecte no banco de dados via sqlcmd
 
 * **Importante salientar que deve substituir o parametro {IP} pelo ip copiado no passo 2.**
 
-`sqlcmd -S {IP} -U sa -P Sqlserver17`
+```shell
+sqlcmd -S {IP} -U sa -P Sqlserver17
+```
 
 ### Checando funcionamento do banco de dados
 
 1. Ao rodar o sqlcmd acima, deve retornar na próxima linha de comando a seguinte expressão: 1>
 
-2. Após isso, rode o seguinte comando: `SELECT @@VERSION`
+2. Após isso, rode o seguinte comando: 
 
-3. Rodado o comando acima, rode o comando: `GO`
+```shell
+SELECT @@VERSION
+```
+
+3. Rodado o comando acima, rode o comando:
+
+```shell
+GO
+```
 
 4. Deverá retornar com a versão do microsoft sqlserver, a qual é `Microsoft SQL Server 2017 Express Edition`
 
@@ -44,42 +60,74 @@
 
 1. Crie o usuário para conectar sua aplicação:
 
-`CREATE LOGIN <User> WITH PASSWORD = '<Password>';`
+```shell
+CREATE LOGIN <User> WITH PASSWORD = '<Password>';
+```
 
-`GO`
+```shell
+GO
+```
 
 2. Crie o database
 
-`CREATE DATABASE <Database>`
+```shell
+CREATE DATABASE <Database>;
+```
 
-`GO`
+```shell
+GO
+```
 
 3. Altere a propriedades ALLOW_SNAPSHOT_ISOLATION_ON:
 
-`ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON;`
+```shell
+ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON;
+```
 
-`GO`
+```shell
+GO
+```
 
 4. Altere a propriedade READ_COMMITTED_SNAPSHOT:
 
-`ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON;`
+```shell
+ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON;
+```
 
-`GO`
+```shell
+GO
+```
 
 5. Altere o User Mapping para considerar o usuário como db_owner:
 
-`USE <Database>`
+```shell
+USE <Database>
+```
 
-`GO`
+```shell
+GO
+```
 
-`CREATE USER <User> FOR LOGIN <User>`
+```shell
+CREATE USER <User> FOR LOGIN <User>
+```
 
-`GO`
+```shell
+GO
+```
 
-`USE <Database>`
+```shell
+USE <Database>
+```
 
-`GO`
+```shell
+GO
+```
 
-`ALTER ROLE [db_owner] ADD MEMBER <User>`
+```shell
+ALTER ROLE [db_owner] ADD MEMBER <User>
+```
 
-`GO`
+```shell
+GO
+```
