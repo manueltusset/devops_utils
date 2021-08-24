@@ -24,4 +24,4 @@ machines/windows/windows_server_2012/.vagrant
 machines/windows/windows_server_2016/.vagrant
 machines/windows/windows_server_2019/.vagrant
 
-tests/AWS_SQS/tmp_localstack
+aws/SQS/tmp_localstack
