@@ -16,15 +16,18 @@ Vagrant.configure("2") do |config|
     config.windows.halt_timeout = 15
 
     config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
+    config.vm.network :forwarded_port, guest: 443, host: 443, id: "https_iis", auto_correct: true
+    config.vm.network :forwarded_port, guest: 81, host: 81, id: "http_iis", auto_correct: true
+
+    config.vm.synced_folder '../scripts/', 'C:\\scripts'
 
     config.vm.provision "shell", inline: <<-SHELL
-        echo #{ENV['TAG']} >> C:\\teste.txt
-        echo #{ENV['BRANCH']} >> C:\\teste.txt
+    Powershell.exe C:\\scripts\\install.ps1 -Tag #{ENV['Tag']} -Branch #{ENV['Branch']}
     SHELL
 
     config.vm.provider "hyperv" do |hv|
         hv.cpus = 4
-        hv.vmname = "windows_server_2019"
+        hv.vmname = "ws2019_#{ENV['Tag']}"
         hv.memory = 6144
         hv.maxmemory = 6144
         hv.linked_clone = true
@@ -33,6 +36,6 @@ Vagrant.configure("2") do |config|
     config.vm.provider "virtualbox" do |vb|
         vb.cpus = 4
         vb.memory = "6144"
-        vb.name = "windows_server_2019"
-      end
+        vb.name = "ws2019_#{ENV['Tag']}"
+    end
 end
