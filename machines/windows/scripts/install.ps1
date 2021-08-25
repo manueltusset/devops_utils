@@ -10,8 +10,23 @@ Write-Host "=====> Branch: $Branch <=====" -ForegroundColor Yellow
 Set-Location C:\Users\vagrant\Downloads
 $CurrentPath = $(Get-Location).Path;
 
+Function Install-Chocolatey {
+  Log "Instalando Chocolatey"
+
+  Set-ExecutionPolicy Bypass -Scope Process -Force;
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; 
+  iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'));
+}
+
+Function Install-Chrome {
+  Log "Instalando Google Chrome"
+
+  powershell -Command 'choco install googlechrome -y'
+}
+
 Function Install-IIS {
   Log "Instalando IIS"
+
   Install-WindowsFeature Web-WebServer, Web-Default-Doc, Web-Dir-Browsing, Web-Http-Errors, Web-Static-Content, Web-Http-Redirect, Web-Http-Logging, Web-Custom-Logging, Web-Stat-Compression, Web-Dyn-Compression, Web-Filtering, Web-Basic-Auth, Web-CGI, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Mgmt-Tools, Web-Mgmt-Service, Web-Scripting-Tools, Web-Http-Tracing -Verbose
 }
 
@@ -72,15 +87,10 @@ Function Install-Tomcat {
   cmd /c "sc config Tomcat7 obj=localsystem"
 }
 
-Function Download-Package {
-  Log "Baixando pacotes da suite"
-
-  Download-File -Url "http://10.132.1.38/$Tag.zip" -Dest "$CurrentPath\$Tag.zip"
-}
-
+Install-Chocolatey
+Install-Chrome
 Install-IIS
 Install-IISAdministration
 Install-7zip
 Install-Java
 Install-Tomcat
-#Download-Package
