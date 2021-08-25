@@ -12,7 +12,7 @@
 - Virtual Box (virtualbox)
 - Hyper-V (hyperv)
 
-## Windows Server
+## Provisionando Windows Server
 
 Executar o comando abaixo para provisionar a vm desejada:
 
@@ -20,8 +20,38 @@ Executar o comando abaixo para provisionar a vm desejada:
 Tag=<tag> Branch=<branch> Version=<version> vagrant up --provider <provider>
 ```
 
-Exemplo do comandoa cima:
+### Exemplos
+
+Exemplo para windows server 2016 do comando acima:
+
+```shell
+Tag=2.1.6.5 Branch=2-1-6 Version=2016 vagrant up --provider hyperv
+```
+
+Exemplo para windows server 2019 do comando acima:
 
 ```shell
 Tag=2.1.6.5 Branch=2-1-6 Version=2019 vagrant up --provider hyperv
+```
+
+## Destruindo máquinas virtuais Windows Server
+
+Executar o comando abaixo:
+
+```shell
+Version=<version> vagrant destroy -f
+```
+
+### Exemplos
+
+Exemplo para windows server 2016 do comando acima:
+
+```shell
+Version=2016 vagrant destroy -f
+```
+
+Exemplo para windows server 2019 do comando acima:
+
+```shell
+Version=2019 vagrant destroy -f
 ```
