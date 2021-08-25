@@ -2,7 +2,11 @@
 
 - IMPORTANTE: Sempre executar no windows 10 no gitbash com privilegios administrativos.
 
-## Antes de tudo, instale o(s) plugin(s) abaixo:
+## Antes de tudo, instale o vagrant:
+
+[Vagrant Download](https://www.vagrantup.com/downloads)
+
+### Após instalado o Vagrant, instale o seguinte plugin:
 
 ```shell
 vagrant plugin install vagrant-timezone
