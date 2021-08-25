@@ -2,6 +2,12 @@
 
 - IMPORTANTE: Sempre executar no windows 10 no gitbash com privilegios administrativos.
 
+## Antes de tudo, instale o(s) plugin(s) abaixo:
+
+```shell
+vagrant plugin install vagrant-timezone
+```
+
 ## Lista de Versões disposíveis
 
 - Windows Server 2016 (Versão: 2016)
