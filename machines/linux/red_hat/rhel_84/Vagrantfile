@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# frozen_string_literal: true
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'generic/rhel8'
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.cpus = 4
+    vb.memory = '6144'
+    vb.name = 'redhat-8.4'
+  end
+
+  config.vm.provider "hyperv" do |hv|
+    hv.cpus = 4
+    hv.vmname = 'redhat-8.4'
+    hv.memory = 6144
+    hv.maxmemory = 6144
+    hv.linked_clone = true
+  end
+
+  config.vm.network 'forwarded_port', guest: 80, host: 8080, host_ip: '127.0.0.1'
+  config.vm.network 'forwarded_port', guest: 5432, host: 5432, host_ip: '127.0.0.1'
+
+  config.vm.synced_folder '../../scripts/', '/scripts'
+
+  config.vm.provision 'shell', inline: <<-SHELL
+
+  SHELL
+end

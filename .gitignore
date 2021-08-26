@@ -22,4 +22,17 @@ composes/portainer/portainer_data
 
 aws/SQS/tmp_localstack
 
-machines/windows/.vagrant
+machines/windows/windows_server_2016/.vagrant
+machines/windows/windows_server_2019/.vagrant
+
+machines/linux/centos/centos_7/.vagrant
+machines/linux/centos/centos_8/.vagrant
+
+machines/linux/debian/debian_7/.vagrant
+machines/linux/debian/debian_8/.vagrant
+
+machines/linux/red_hat/rhel_75/.vagrant
+machines/linux/red_hat/rhel_79/.vagrant
+machines/linux/red_hat/rhel_84/.vagrant
+
+machines/linux/suse/suse_12/.vagrant
