@@ -1,11 +1,4 @@
-Param (
-  [string]$Tag,
-  [string]$Branch
-)
 Import-Module .\utils.ps1;
-
-Write-Host "=====> Tag: $Tag <=====" -ForegroundColor Yellow
-Write-Host "=====> Branch: $Branch <=====" -ForegroundColor Yellow
 
 Set-Location C:\Users\vagrant\Downloads
 $CurrentPath = $(Get-Location).Path;

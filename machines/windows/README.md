@@ -1,67 +1,41 @@
-# Provisionando máquinas virtuais Windows
+# Provisionando Máquinas Virtuais Windows
 
-- IMPORTANTE: Sempre executar no windows 10 no gitbash com privilegios administrativos.
+- IMPORTANE: Os comandos abaixo devem ser executados em gitbash com privilégios administrativos.
 
-## Antes de tudo, instale o vagrant:
+## Provedores disponíveis
 
-[Vagrant Download](https://www.vagrantup.com/downloads)
+- hyperv
+- virtualbox
 
-### Após instalado o Vagrant, instale o seguinte plugin:
+## Versões disponíveis
+
+- 2016
+- 2019
+
+## Provisionamento
+
+- Para provisionar máquinas virtuais linux com as versões e provedores acima, deve-se executar o seguinte comando:
 
 ```shell
-vagrant plugin install vagrant-timezone
+VERSION=<version> vagrant up --provider <provider>
 ```
 
-## Lista de Versões disposíveis
-
-- Windows Server 2016 (Versão: 2016)
-- Windows Server 2019 (Versão: 2019)
-
-## Lista de Provedores disponíveis
-
-- Virtual Box (virtualbox)
-- Hyper-V (hyperv)
-
-## Provisionando Windows Server
-
-Executar o comando abaixo para provisionar a vm desejada:
+- Exemplo
 
 ```shell
-Tag=<tag> Branch=<branch> Version=<version> vagrant up --provider <provider>
+VERSION=2016 vagrant up --provider hyperv
 ```
 
-### Exemplos
+## Destruir
 
-Exemplo para windows server 2016 do comando acima:
+- Para destruir as máquinas virtuais provisionadas com as boxes e provedores acima, deve-se execcutar o seguinte comando:
 
 ```shell
-Tag=2.1.6.5 Branch=2-1-6 Version=2016 vagrant up --provider hyperv
+VERSION=<version> vagrant destroy -f
 ```
 
-Exemplo para windows server 2019 do comando acima:
+- Exemplo
 
 ```shell
-Tag=2.1.6.5 Branch=2-1-6 Version=2019 vagrant up --provider hyperv
-```
-
-## Destruindo máquinas virtuais Windows Server
-
-Executar o comando abaixo:
-
-```shell
-Version=<version> vagrant destroy -f
-```
-
-### Exemplos
-
-Exemplo para windows server 2016 do comando acima:
-
-```shell
-Version=2016 vagrant destroy -f
-```
-
-Exemplo para windows server 2019 do comando acima:
-
-```shell
-Version=2019 vagrant destroy -f
+VERSION=2016 vagrant destroy -f
 ```
