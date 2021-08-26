@@ -4,29 +4,33 @@
 # frozen_string_literal: true
 
 Vagrant.configure('2') do |config|
-  config.vm.box = 'generic/ubuntu2004'
+  config.vm.box = "#{ENV['BOX']}"
+
+  if Vagrant.has_plugin?("vagrant-timezone")
+    config.timezone.value = "America/Sao_Paulo"
+  end
 
   config.vm.provider 'virtualbox' do |vb|
     vb.cpus = 4
     vb.memory = '6144'
-    vb.name = 'ubuntu-18.04'
+    vb.name = "#{ENV['NAME']}"
   end
 
   config.vm.provider "hyperv" do |hv|
     hv.cpus = 4
-    hv.vmname = 'ubuntu-18.04'
+    hv.vmname = "#{ENV['NAME']}"
     hv.memory = 6144
     hv.maxmemory = 6144
     hv.linked_clone = true
   end
 
   config.vm.network 'forwarded_port', guest: 80, host: 8080, host_ip: '127.0.0.1'
+  config.vm.network 'forwarded_port', guest: 443, host: 443, host_ip: '127.0.0.1'
   config.vm.network 'forwarded_port', guest: 5432, host: 5432, host_ip: '127.0.0.1'
-  config.vm.network 'private_network', ip: '192.168.33.10'
 
-  config.vm.synced_folder 'vagrant-share/', '/vagrant'
+  config.vm.synced_folder './scripts/', '/scripts'
 
   config.vm.provision 'shell', inline: <<-SHELL
-    
+    bash /scripts/install.sh
   SHELL
 end
