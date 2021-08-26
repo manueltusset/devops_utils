@@ -28,7 +28,7 @@ VERSION=2016 vagrant up --provider hyperv
 
 ## Destruir
 
-- Para destruir as máquinas virtuais provisionadas com as boxes e provedores acima, deve-se execcutar o seguinte comando:
+- Para destruir as máquinas virtuais provisionadas com as versões e provedores acima, deve-se execcutar o seguinte comando:
 
 ```shell
 VERSION=<version> vagrant destroy -f
