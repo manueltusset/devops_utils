@@ -10,7 +10,6 @@
 ## Boxes disponíveis
 
 - generic/centos7
-- generic/centos8
 - generic/debian8
 - generic/rhel7
 - generic/rhel8
@@ -22,13 +21,19 @@
 - Para provisionar máquinas virtuais linux com as boxes e provedores acima, deve-se executar o seguinte comando:
 
 ```shell
-BOX=<box> NAME=<name> vagrant up --provider <provider>
+vagrant up --provider <provider>
 ```
 
 - Exemplo
 
 ```shell
-BOX=generic/rhel7 NAME=redhat7.9 vagrant up --provider hyperv
+vagrant up --provider hyperv
+```
+
+## Conectando via ssh
+
+```shell
+vagrant ssh
 ```
 
 ## Destruir
@@ -36,11 +41,5 @@ BOX=generic/rhel7 NAME=redhat7.9 vagrant up --provider hyperv
 - Para destruir as máquinas virtuais provisionadas com as boxes e provedores acima, deve-se execcutar o seguinte comando:
 
 ```shell
-BOX=<box> NAME=<name> vagrant destroy -f
-```
-
-- Exemplo
-
-```shell
-BOX=generic/rhel7 NAME=redhat7.9 vagrant destroy -f
+vagrant destroy -f
 ```

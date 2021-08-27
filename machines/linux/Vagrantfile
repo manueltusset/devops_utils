@@ -4,21 +4,42 @@
 # frozen_string_literal: true
 
 Vagrant.configure('2') do |config|
-  config.vm.box = "#{ENV['BOX']}"
+
+  puts "Insert your image box: "
+  box = STDIN.gets.chomp
+  
+  puts "Enter the name of your virtual machine: "
+  vm_name = STDIN.gets.chomp
+
+  config.vm.box = "#{box}"
 
   if Vagrant.has_plugin?("vagrant-timezone")
-    config.timezone.value = "America/Sao_Paulo"
+    puts "Insert your timezone: "
+    timezone = STDIN.gets.chomp
+    config.timezone.value = "#{timezone}"
+  end
+
+  if config.vm.box.include? "generic/rhel"
+    if Vagrant.has_plugin?("vagrant-registration")
+      puts "Enter your redhat registration username: "
+      rhel_username = STDIN.gets.chomp
+      config.registration.username = "#{rhel_username}"
+
+      puts "Enter your redhat registration password: "
+      rhel_password = STDIN.gets.chomp
+      config.registration.password = "#{rhel_password}"
+    end
   end
 
   config.vm.provider 'virtualbox' do |vb|
     vb.cpus = 4
     vb.memory = '6144'
-    vb.name = "#{ENV['NAME']}"
+    vb.name = "#{vm_name}"
   end
 
   config.vm.provider "hyperv" do |hv|
     hv.cpus = 4
-    hv.vmname = "#{ENV['NAME']}"
+    hv.vmname = "#{vm_name}"
     hv.memory = 6144
     hv.maxmemory = 6144
     hv.linked_clone = true

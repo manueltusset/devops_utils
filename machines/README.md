@@ -4,9 +4,13 @@
 
 1. Baixe o [Vagrant](https://www.vagrantup.com/downloads)
 2. Instale o mesmo seguindo as etapas do instalador.
-3. Instale o plugin abaixo via gitbash:
+3. Instale o plugin abaixo via gitbash para setar corretamente o timezone:
 ```shell
 vagrant plugin install vagrant-timezone
+```
+4. Instale o plugin abaixo via gitbash para realizar o subscription-manager caso usar o redhat:
+```shell
+vagrant plugin install vagrant-registration
 ```
 
 ## Provisionamento

@@ -4,8 +4,12 @@
 Vagrant.require_version ">= 1.6.2"
 
 Vagrant.configure("2") do |config|
-    config.vm.define "vagrant-windows-2019"
-    config.vm.box = "StefanScherer/windows_#{ENV['VERSION']}"
+
+    puts "When what version of windows server do you want to use? (2016 or 2019): "
+    version = STDIN.gets.chomp
+
+    config.vm.define "vagrant-windows-#{version}"
+    config.vm.box = "StefanScherer/windows_#{version}"
 
     if Vagrant.has_plugin?("vagrant-timezone")
         config.timezone.value = "E. South America Standard Time"
@@ -34,7 +38,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provider "hyperv" do |hv|
         hv.cpus = 4
-        hv.vmname = "windows_server_#{ENV['VERSION']}"
+        hv.vmname = "windows_server_#{version}"
         hv.memory = 6144
         hv.maxmemory = 6144
         hv.linked_clone = true
@@ -43,7 +47,7 @@ Vagrant.configure("2") do |config|
     config.vm.provider "virtualbox" do |vb|
         vb.cpus = 4
         vb.memory = "6144"
-        vb.name = "windows_server_#{ENV['VERSION']}"
+        vb.name = "windows_server_#{version}"
         vb.gui = true
     end
 end
