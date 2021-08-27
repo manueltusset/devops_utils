@@ -17,13 +17,7 @@
 - Para provisionar máquinas virtuais linux com as versões e provedores acima, deve-se executar o seguinte comando:
 
 ```shell
-VERSION=<version> vagrant up --provider <provider>
-```
-
-- Exemplo
-
-```shell
-VERSION=2016 vagrant up --provider hyperv
+vagrant up --provider <provider>
 ```
 
 ## Destruir
@@ -31,11 +25,5 @@ VERSION=2016 vagrant up --provider hyperv
 - Para destruir as máquinas virtuais provisionadas com as versões e provedores acima, deve-se execcutar o seguinte comando:
 
 ```shell
-VERSION=<version> vagrant destroy -f
-```
-
-- Exemplo
-
-```shell
-VERSION=2016 vagrant destroy -f
+vagrant destroy -f
 ```
