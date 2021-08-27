@@ -9,17 +9,27 @@
 
 ## Neste repositório estão disponíveis:
 
-### Databases
+### [Databases](./composes/databases)
 
 * Oracle Database em Containers Docker
 * PostgreSQL em Containers Docker
 * SQLServer em Containers Docker
 
-### AWS Local Tests
+### [Portainer](./composes/portainer)
+
+* Docker-compose do portainer configurado para gerenciamento de containers
+
+### [Composes Linux](./composes/linux)
+
+* CentOS
+* Oracle Linux
+* Ubuntu
+
+### [AWS Local Tests](./aws)
 
 * Localstack para testes com SQS
 
-### Provisionamento de VM com Vagrant
+### [Provisionamento de VM com Vagrant](./machines)
 
 * Máquinas Virtuais Windows com Vagrant
 * Máquinas Virtuais Linux com Vagrant
