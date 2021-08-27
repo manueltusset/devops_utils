@@ -8,3 +8,10 @@
 ```shell
 vagrant plugin install vagrant-timezone
 ```
+
+## Provisionamento
+
+1. Para provisionar as máquinas viruais, siga os passos nos links abaixo:
+
+* [Máquinas Virtuais Windows](./windows)
+* [Máquinas Virtuais Linux](./linux)
