@@ -5,7 +5,7 @@
 ## Importante
 
 1. O repositório é atualizado semanalmente, caso algum dos recursos esteja indisponível, abra uma issue para que seja resolvido o mais breve possível.
-2. Para maior sucesso na execução dos recursos disponíveis, que sempre seja seguido os README.md de cada recurso, onde tem a documentação de funcionamento dos mesmos.
+2. Para maior sucesso na execução dos recursos disponíveis, deve sempre seguir os passos descritos README.md de cada recurso, onde tem a documentação de funcionamento dos mesmos.
 
 ## Neste repositório estão disponíveis:
 
