@@ -23,11 +23,9 @@ Vagrant.configure("2") do |config|
     config.vm.network 'forwarded_port', guest: 443, host: 443, id: "https_iis", auto_correct: true
     config.vm.network 'forwarded_port', guest: 81, host: 81, id: "http_iis", auto_correct: true
 
-    
+    config.vm.synced_folder './scripts/', 'C:\\scripts'
 
     if "#{ENV['VM_Clean']}" === "n"
-        config.vm.synced_folder './scripts/', 'C:\\scripts'
-        
         config.vm.provision "shell", inline: <<-SHELL
             Copy-Item C:\\scripts\\* C:\\Users\\vagrant\\Downloads
             cd C:\\Users\\vagrant\\Downloads

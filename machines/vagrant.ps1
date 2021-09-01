@@ -10,10 +10,7 @@ Function UP {
     #$VM_Name = Read-Host "Enter the name of your virtual machine"
     $Type_OS = $(Get-TypeOS)
     $Box = $(Get-Box -Type_OS $Type_OS)
-
-    if ($Type_OS -eq 'windows') {
-      $CleanVM = Read-Host "Do you want to provision a clean virtual machine? (y/n)"
-    }
+    $CleanVM = Read-Host "Do you want to provision a clean virtual machine? (y/n)"
 
     $Env:VM_Name = $Box
     $Env:VM_Box = $Box
