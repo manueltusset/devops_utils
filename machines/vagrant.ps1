@@ -1,7 +1,13 @@
+Param (
+    [Parameter(Position=1)]
+    [ValidateSet("up","ssh","destroy")]
+    [string]$Action = "up"
+)
+
 $CurrentPath = $(Get-Location).Path
 
 Function UP {
-    $VM_Name = Read-Host "Enter the name of your virtual machine"
+    #$VM_Name = Read-Host "Enter the name of your virtual machine"
     $Type_OS = $(Get-TypeOS)
     $Box = $(Get-Box -Type_OS $Type_OS)
 
@@ -9,7 +15,7 @@ Function UP {
       $CleanVM = Read-Host "Do you want to provision a clean virtual machine? (y/n)"
     }
 
-    $Env:VM_Name = $VM_Name
+    $Env:VM_Name = $Box
     $Env:VM_Box = $Box
     $Env:VM_Clean = $CleanVM
     Set-Location -Path "$CurrentPath\$Type_OS"
@@ -21,11 +27,11 @@ Function UP {
 
 Function Destroy {
     $VM_Name = $(Get-SelectedVM)
-    $Type_OS = $(Get-TypeOS)
-    $Box = $(Get-Box -Type_OS $Type_OS)
+    $Type_OS = $(Get-TypeOS -VM_Name $VM_Name)
+    #$Box = $(Get-Box -Type_OS $Type_OS)
     
     $Env:VM_Name = $VM_Name
-    $Env:VM_Box = $Box
+    $Env:VM_Box = $VM_Name
 
     Set-Location -Path "$CurrentPath\$Type_OS"
 
@@ -36,11 +42,11 @@ Function Destroy {
 
 Function SSH {
     $VM_Name = $(Get-SelectedVM)
-    $Type_OS = $(Get-TypeOS)
-    $Box = $(Get-Box -Type_OS $Type_OS)
+    $Type_OS = $(Get-TypeOS -VM_Name $VM_Name)
+    #$Box = $(Get-Box -Type_OS $Type_OS)
     
     $Env:VM_Name = $VM_Name
-    $Env:VM_Box = $Box
+    $Env:VM_Box = $VM_Name
 
     Set-Location -Path "$CurrentPath\$Type_OS"
 
@@ -56,7 +62,12 @@ Function Get-SelectedVM {
             $List = $(& 'C:\Program Files\Oracle\VirtualBox\VBoxManage.exe' list vms)
             $Count = 0;
             foreach($vb in $List) {
-                [void]$ListMachines.Add($Count, $vb);
+
+                [int]$indexOf = $($vb.IndexOf('"') + 1)
+                [int]$lastIndexOf = $($vb.LastIndexOf('"') - 1)
+                [string]$nameOK = $vb.Substring($indexOf, $lastIndexOf)
+                
+                [void]$ListMachines.Add($Count, $nameOK);
                 $Count++;
             }
         }
@@ -86,17 +97,29 @@ Function Get-SelectedVM {
     return $SelectedVM;
 }
 
-Function Get-TypeOS {
-    $Type_OS = Read-Host "What type of operating system do you want to provision? (1-linux, 2-windows)"
+Function Get-TypeOS([string]$VM_Name = "") {
+    
+    Write-Host "==================================="
+    Write-Host "$VM_Name"
+    Write-Host "==================================="
 
-    Switch($Type_OS) {
-        { $_ -eq '1' -or $_ -eq 'linux'} {
-            $Type_OS = 'linux'
-        }
-        { $_ -eq '2' -or $_ -eq 'windows'} {
-            $Type_OS = 'windows'
+    if ($VM_Name -like "*windows*") {
+        $Type_OS = 'windows'
+    } elseif ($VM_Name -like "*generic*") {
+        $Type_OS = 'linux'
+    } else {
+        $Type_OS = Read-Host "What type of operating system do you want to provision? (1-linux, 2-windows)"
+
+        Switch($Type_OS) {
+            { $_ -eq '1' -or $_ -eq 'linux'} {
+                $Type_OS = 'linux'
+            }
+            { $_ -eq '2' -or $_ -eq 'windows'} {
+                $Type_OS = 'windows'
+            }
         }
     }
+    
     Write-Host "Selected Type OS: $Type_OS" -ForegroundColor Green
     return $Type_OS;
 }
@@ -160,19 +183,16 @@ Function Get-Provider {
     return $Provider
 }
 
-$Action = Read-Host "What do you want to do? (1-up, 2-ssh, 3-destroy)"
-Write-Host "Selected Action: $Action" -ForegroundColor Green
-
 $Provider = $(Get-Provider)
 
 Switch($Action) {
-    { $_ -eq '1' -or $_ -eq 'up'} {
+    { $_ -eq 'up'} {
         UP
     }
-    { $_ -eq '2' -or $_ -eq 'ssh'} {
+    { $_ -eq 'ssh'} {
         SSH
     }
-    { $_ -eq '3' -or $_ -eq 'destroy'} {
+    { $_ -eq 'destroy'} {
         Destroy
     }
 }

@@ -15,7 +15,39 @@ vagrant plugin install vagrant-registration
 
 ## Provisionamento
 
-1. Para provisionar as máquinas viruais, siga os passos nos links abaixo:
+### Para provisionar as máquinas viruais, execute o comando abaixo:
 
-* [Máquinas Virtuais Windows](./windows)
-* [Máquinas Virtuais Linux](./linux)
+1. Para host windows:
+```shell
+.\vagrant.ps1 up
+```
+2. Para host linux:
+```shell
+.\vagrant.sh up
+```
+
+## SSH
+
+### Para acessar as máquinas virtuais linux via ssh, execute o comando abaixo:
+
+1. Para host windows:
+```shell
+.\vagrant.ps1 ssh
+```
+2. Para host linux:
+```shell
+.\vagrant.sh ssh
+```
+
+## Destruir
+
+### Para destruir máquinas virtuais linux via ssh, execute o comando abaixo:
+
+1. Para host windows:
+```shell
+.\vagrant.ps1 destroy
+```
+2. Para host linux:
+```shell
+.\vagrant.sh destroy
+```
