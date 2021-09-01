@@ -5,11 +5,8 @@ Vagrant.require_version ">= 1.6.2"
 
 Vagrant.configure("2") do |config|
 
-    puts "When what version of windows server do you want to use? (2016 or 2019): "
-    version = STDIN.gets.chomp
-
-    config.vm.define "vagrant-windows-#{version}"
-    config.vm.box = "StefanScherer/windows_#{version}"
+    config.vm.define "vagrant-#{ENV['VM_Box']}"
+    config.vm.box = "StefanScherer/#{ENV['VM_Box']}"
 
     if Vagrant.has_plugin?("vagrant-timezone")
         config.timezone.value = "E. South America Standard Time"
@@ -28,26 +25,26 @@ Vagrant.configure("2") do |config|
 
     config.vm.synced_folder './scripts/', 'C:\\scripts'
 
-    config.vm.provision "shell", inline: <<-SHELL
-        Copy-Item C:\\scripts\\* C:\\Users\\vagrant\\Downloads
-
-        cd C:\\Users\\vagrant\\Downloads
-
-        Powershell.exe C:\\scripts\\install.ps1
-    SHELL
+    if "#{ENV['VM_Clean']}" === "n"
+        config.vm.provision "shell", inline: <<-SHELL
+            Copy-Item C:\\scripts\\* C:\\Users\\vagrant\\Downloads
+            cd C:\\Users\\vagrant\\Downloads
+            Powershell.exe C:\\scripts\\install.ps1
+        SHELL
+    end
 
     config.vm.provider "hyperv" do |hv|
         hv.cpus = 4
-        hv.vmname = "windows_server_#{version}"
-        hv.memory = 6144
-        hv.maxmemory = 6144
+        hv.vmname = "#{ENV['VM_Name']}"
+        hv.memory = 8192
+        hv.maxmemory = 8192
         hv.linked_clone = true
     end
 
     config.vm.provider "virtualbox" do |vb|
         vb.cpus = 4
-        vb.memory = "6144"
-        vb.name = "windows_server_#{version}"
+        vb.memory = "8192"
+        vb.name = "#{ENV['VM_Name']}"
         vb.gui = true
     end
 end

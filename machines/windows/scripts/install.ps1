@@ -11,6 +11,12 @@ Function Install-Chocolatey {
   iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'));
 }
 
+Function Set-PTBRKeyboard {
+  Log "Setando teclado para layout pt-BR"
+
+  powershell Set-WinUserLanguageList -LanguageList pt-BR -Force
+}
+
 Function Install-Chrome {
   Log "Instalando Google Chrome"
 
@@ -81,6 +87,7 @@ Function Install-Tomcat {
 }
 
 Install-Chocolatey
+Set-PTBRKeyboard
 Install-Chrome
 Install-IIS
 Install-IISAdministration
