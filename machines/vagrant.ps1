@@ -98,11 +98,6 @@ Function Get-SelectedVM {
 }
 
 Function Get-TypeOS([string]$VM_Name = "") {
-    
-    Write-Host "==================================="
-    Write-Host "$VM_Name"
-    Write-Host "==================================="
-
     if ($VM_Name -like "*windows*") {
         $Type_OS = 'windows'
     } elseif ($VM_Name -like "*generic*") {
