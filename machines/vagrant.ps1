@@ -25,7 +25,6 @@ Function UP {
 Function Destroy {
     $VM_Name = $(Get-SelectedVM)
     $Type_OS = $(Get-TypeOS -VM_Name $VM_Name)
-    #$Box = $(Get-Box -Type_OS $Type_OS)
     
     $Env:VM_Name = $VM_Name
     $Env:VM_Box = $VM_Name
@@ -39,8 +38,7 @@ Function Destroy {
 
 Function SSH {
     $VM_Name = $(Get-SelectedVM)
-    $Type_OS = $(Get-TypeOS -VM_Name $VM_Name)
-    #$Box = $(Get-Box -Type_OS $Type_OS)
+    $Type_OS = "linux"
     
     $Env:VM_Name = $VM_Name
     $Env:VM_Box = $VM_Name
@@ -124,6 +122,7 @@ Function Get-Box([string]$Type_OS) {
         4 = "generic/rhel8";
         5 = "generic/ubuntu1804";
         6 = "generic/ubuntu2004";
+        7 = "generic/debian9";
     }
 
     $ListBoxWindows= @{
