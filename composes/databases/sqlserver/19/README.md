@@ -10,19 +10,7 @@
 docker-compose up -d
 ```
 
-## 2. Inspecione o container sqlserver19 para capturar o IP do mesmo
-
-* No prompt de comando execute o seguinte script para inspecionar o container do pg12:
-
-```shell
-docker inspect sqlserver19
-```
-
-* Após inspecionado o container, copie o valor da key **IPAddress**:
-
-`"IPAddress": "x.x.x.x"`
-
-## 3. Conectando no banco de dados
+## 2. Conectando no banco de dados
 
 ### Acesse o container mssql-tools:
 
@@ -35,7 +23,7 @@ docker exec -it mssql-tools bash
 * **Importante salientar que deve substituir o parametro {IP} pelo ip copiado no passo 2.**
 
 ```shell
-sqlcmd -S {IP} -U sa -P Sqlserver19
+sqlcmd -S sqlserver19 -U sa -P Sqlserver19
 ```
 
 ### Checando funcionamento do banco de dados
@@ -45,9 +33,9 @@ sqlcmd -S {IP} -U sa -P Sqlserver19
 2. Após isso, rode o seguinte comando para verificar a versão do database: 
 
 ```shell
-SELECT @@VERSION;
+SELECT @@VERSION
 
-GO;
+GO
 ```
 
 3. Deverá retornar com a versão do microsoft sqlserver, a qual é `Microsoft SQL Server 2019 Express Edition`
@@ -57,17 +45,17 @@ GO;
 1. Crie o usuário para conectar sua aplicação:
 
 ```shell
-CREATE LOGIN <User> WITH PASSWORD = '<Password>';
+CREATE LOGIN <User> WITH PASSWORD = '<Password>'
 
-GO;
+GO
 ```
 
 2. Crie o database
 
 ```shell
-CREATE DATABASE <Database>;
+CREATE DATABASE <Database>
 
-GO;
+GO
 ```
 
 ## Altere as propriedades do database
@@ -75,17 +63,17 @@ GO;
 1. Altere a propriedades ALLOW_SNAPSHOT_ISOLATION_ON:
 
 ```shell
-ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON;
+ALTER DATABASE <Database> SET ALLOW_SNAPSHOT_ISOLATION ON
 
-GO;
+GO
 ```
 
 2. Altere a propriedade READ_COMMITTED_SNAPSHOT:
 
 ```shell
-ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON;
+ALTER DATABASE <Database> SET READ_COMMITTED_SNAPSHOT ON
 
-GO;
+GO
 ```
 
 ## Altere o user criado para db_owner
@@ -93,30 +81,23 @@ GO;
 1. Force o uso do database para o comando no passo 2:
 
 ```shell
-USE <Database>;
+USE <Database>
 
-GO;
+GO
 ```
 
 2. Vincule o login do usuário:
 
 ```shell
-CREATE USER <User> FOR LOGIN <User>;
+CREATE USER <User> FOR LOGIN <User>
 
-GO;
+GO
 ```
 
-3. Force o uso do database para o comando no passo 4: 
-```shell
-USE <Database>;
-
-GO;
-```
-
-4. Altere as permissões do usuário criado para db_owner:
+3. Altere as permissões do usuário criado para db_owner:
 
 ```shell
-ALTER ROLE [db_owner] ADD MEMBER <User>;
+ALTER ROLE [db_owner] ADD MEMBER <User>
 
-GO;
+GO
 ```
