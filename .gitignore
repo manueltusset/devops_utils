@@ -22,5 +22,4 @@ composes/portainer/portainer_data
 
 aws/SQS/tmp_localstack
 
-machines/windows/.vagrant
-machines/linux/.vagrant
+machines/*/*/*/*/.vagrant

@@ -24,6 +24,8 @@ services:
         image: manueltusset/postgresql:pgadmin4-10
         ports:
             - 55432:80
+        volumes:
+            - ./data:/data
         networks:
             - pgnetwork
         environment:
