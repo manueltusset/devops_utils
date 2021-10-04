@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.require_version ">= 1.6.2"
+
+Vagrant.configure("2") do |config|
+
+    config.vm.define "vagrant-w10"
+    config.vm.box = "StefanScherer/windows_10"
+    config.vm.box_version = "2021.08.17"
+
+    if Vagrant.has_plugin?("vagrant-timezone")
+        config.timezone.value = "E. South America Standard Time"
+    end
+
+    # Admin user name and password
+    config.winrm.username = "vagrant"
+    config.winrm.password = "vagrant"
+
+    config.vm.guest = :windows
+    config.windows.halt_timeout = 15
+
+    config.vm.network 'forwarded_port', guest: 3389, host: 3389, id: "rdp", auto_correct: true
+    config.vm.network 'forwarded_port', guest: 443, host: 443, id: "https_iis", auto_correct: true
+    config.vm.network 'forwarded_port', guest: 81, host: 81, id: "http_iis", auto_correct: true
+
+    config.vm.synced_folder '../../../scripts/', 'C:\\scripts'
+    
+    config.vm.provision "shell", inline: <<-SHELL
+        Copy-Item C:\\scripts\\* C:\\Users\\vagrant\\Downloads
+        cd C:\\Users\\vagrant\\Downloads
+        Powershell.exe C:\\scripts\\install.ps1
+    SHELL
+
+    config.vm.provider "hyperv" do |hv|
+        hv.cpus = 4
+        hv.vmname = "Windows 10"
+        hv.memory = 8192
+        hv.maxmemory = 8192
+        hv.linked_clone = true
+    end
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.cpus = 4
+        vb.memory = "8192"
+        vb.name = "Windows 10"
+        vb.gui = true
+    end
+end

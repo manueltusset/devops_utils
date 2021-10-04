@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# frozen_string_literal: true
+
+Vagrant.configure('2') do |config|
+
+  config.vm.box = "generic/rhel8"
+  config.vm.box_version = "3.4.2"
+
+  if Vagrant.has_plugin?("vagrant-registration")
+    puts "Enter your redhat registration username: "
+    rhel_username = STDIN.gets.chomp
+    config.registration.username = "#{rhel_username}"
+
+    puts "Enter your redhat registration password: "
+    rhel_password = STDIN.gets.chomp
+    config.registration.password = "#{rhel_password}"
+  end
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.cpus = 4
+    vb.memory = '8192'
+    vb.name = "RedHat EL 8"
+  end
+
+  config.vm.provider "hyperv" do |hv|
+    hv.cpus = 4
+    hv.vmname = "RedHat EL 8"
+    hv.memory = 8192
+    hv.maxmemory = 8192
+    hv.linked_clone = true
+  end
+
+  config.vm.network 'forwarded_port', guest: 80, host: 8080, host_ip: '127.0.0.1'
+  config.vm.network 'forwarded_port', guest: 443, host: 443, host_ip: '127.0.0.1'
+
+  config.vm.synced_folder '../scripts/', '/scripts'
+  
+  config.vm.provision 'shell', inline: <<-SHELL
+    echo "teste manuel"
+  SHELL
+end
