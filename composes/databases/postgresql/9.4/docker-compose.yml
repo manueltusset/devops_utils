@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+    postgresql9:
+        container_name: postgresql9
+        image: manueltusset/postgresql:9.4
+        ports:
+            - 8080:8080
+            - 5432:5432
+        networks:
+            - pgnetwork
+        volumes:
+            - ./data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        deploy:
+            resources: 
+                limits: 
+                    memory: '2G'
+    pgadmin4:
+        container_name: pgadmin4
+        image: manueltusset/postgresql:pgadmin4-9
+        ports:
+            - 55432:80
+        volumes:
+            - ./data:/data
+        networks:
+            - pgnetwork
+        environment:
+            - PGADMIN_DEFAULT_PASSWORD=postgres
+            - PGADMIN_DEFAULT_EMAIL=seuemail@gmail.com
+networks:
+    pgnetwork:
+        name: pgnetwork
