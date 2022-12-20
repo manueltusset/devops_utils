@@ -19,18 +19,6 @@ services:
             resources: 
                 limits: 
                     memory: '2G'
-    pgadmin4:
-        container_name: pgadmin4
-        image: manueltusset/postgresql:pgadmin4-10
-        ports:
-            - 55432:80
-        volumes:
-            - ./data:/data
-        networks:
-            - pgnetwork
-        environment:
-            - PGADMIN_DEFAULT_PASSWORD=postgres
-            - PGADMIN_DEFAULT_EMAIL=seuemail@gmail.com
 networks:
     pgnetwork:
         name: pgnetwork
