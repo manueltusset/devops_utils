@@ -3,7 +3,7 @@ Se você usa sistema operacional linux como área de trabalho, deve-se usar o sc
 
 Sendo assim, segue abaixo tutorial de uso e das dependências necessárias:
 
-## Sistemas Operacionais Suportados
+## Sistemas Operacionais Disponíveis para Provisionamento
 - Centos 7
 - Centos 8 Stream
 - Centos 9 Stream
