@@ -3,6 +3,18 @@ Se você usa sistema operacional linux como área de trabalho, deve-se usar o sc
 
 Sendo assim, segue abaixo tutorial de uso e das dependências necessárias:
 
+## Sistemas Operacionais Suportados
+- Centos 7
+- Centos 8 Stream
+- Centos 9 Stream
+- Debian 10
+- Oracle Linux 7
+- Oracle Linux 8
+- RedHat Enterprise Linux 7
+- RedHat Enterprise Linux 8
+- Ubuntu 20.04
+- Ubuntu 22.04
+
 ## Dependências
 1. Instalar Vagrant: https://developer.hashicorp.com/vagrant/downloads
 2. Instalar plugin vagrant-disksize no Vagrant `vagrant plugin install vagrant-disksize`
