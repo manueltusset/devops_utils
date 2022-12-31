@@ -1,4 +1,4 @@
-# Provisionamento de Máquinas Virtuais Linux com Vagrant - Como usar?
+# Provisionamento de Máquinas Virtuais Linux com Vagrant
 Se você usa sistema operacional linux como área de trabalho, deve-se usar o script vagrant.sh para gerenciar suas máquinas virtuais. 
 
 Sendo assim, segue abaixo tutorial de uso e das dependências necessárias:
