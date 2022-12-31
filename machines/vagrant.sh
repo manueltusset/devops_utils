@@ -35,11 +35,7 @@ for key in $(echo ${!virtualMachines[@]} | tr ' ' $'\n' | sort); do
   echo "$key - ${virtualMachines[$key]}"
 done
 read -p "Option:" option
-
-if [ -z "${vmBox[${virtualMachines[$option]}]}" ]; then
-  echo "Invalid option - $option"
-  exit 1
-fi
+echo "${vmBox[${virtualMachines[$option]}]}"
 
 rm -rf Vagrantfile
 cat << EOF > Vagrantfile
