@@ -1,23 +1,10 @@
-databases/oracle/11gR2/data
-databases/oracle/11gR2/data-bridge
-databases/oracle/11gR2/startup
-databases/oracle/11gR2/tablespaces
+databases/oracle/**/startup
+databases/oracle/**/data
+databases/oracle/**/scripts
 
-databases/oracle/12/data
-databases/oracle/12/tablespaces
+databases/postgresql/**/data
 
-databases/oracle/18/data
-databases/oracle/18/scripts
-databases/oracle/18/startup
-
-databases/oracle/19/data
-
-databases/postgresql/9.4/data
-databases/postgresql/10/data
-databases/postgresql/12/data
-
-databases/sqlserver/17/data
-databases/sqlserver/19/data
+databases/sqlserver/**/data
 
 machines/**/Vagrantfile
 machines/**/.vagrant
