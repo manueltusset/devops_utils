@@ -1,9 +1,9 @@
 version: "3.7"
 
 services:
-    postgresql9:
-        container_name: postgresql9
-        image: postgres:9.4
+    postgresql14:
+        container_name: postgresql14
+        image: postgres:14.6
         ports:
             - 8080:8080
             - 5432:5432
