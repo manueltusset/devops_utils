@@ -3,7 +3,7 @@ version: "3.7"
 services:
     postgresql10:
         container_name: postgresql10
-        image: manueltusset/postgresql:10.17
+        image: postgres:10.17
         ports:
             - 8080:8080
             - 5432:5432

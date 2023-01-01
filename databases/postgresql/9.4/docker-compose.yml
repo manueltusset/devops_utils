@@ -3,7 +3,7 @@ version: "3.7"
 services:
     postgresql9:
         container_name: postgresql9
-        image: manueltusset/postgresql:9.4
+        image: postgres:9.4
         ports:
             - 8080:8080
             - 5432:5432
