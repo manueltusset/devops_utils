@@ -1,10 +1,6 @@
-databases/oracle/**/startup
-databases/oracle/**/data
-databases/oracle/**/scripts
-
-databases/postgresql/**/data
-
-databases/sqlserver/**/data
+databases/**/**/startup
+databases/**/**/data
+databases/**/**/scripts
 
 machines/**/Vagrantfile
 machines/**/.vagrant
