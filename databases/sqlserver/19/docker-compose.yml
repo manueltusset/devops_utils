@@ -1,33 +1,23 @@
 version: "3.7"
 
 services:
-    sqlserver19:
-        container_name: sqlserver19
-        image: manueltusset/sqlserver:2019
-        ports:
-            - 1433:1433
-        networks:
-            - sqlnetwork
-        volumes:
-            - ./data:/var/opt/mssql/data
-        environment:
-            - ACCEPT_EULA=Y
-            - SA_PASSWORD=Sqlserver19
-            - MSSQL_PID=Express
-        deploy:
-            resources: 
-                limits: 
-                    memory: '2G'
-    mssql-tools:
-        container_name: mssql-tools
-        image: manueltusset/sqlserver:mssql-tools
-        networks:
-            - sqlnetwork
-        deploy:
-            resources: 
-                limits: 
-                    memory: '1G'
-        command: 'ping localhost'
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SqlserverDev
+      - MSSQL_PID=Developer
+    networks:
+      - sqlnetwork
+    volumes:
+      - ./data:/var/opt/mssql/data
+    deploy:
+      resources: 
+        limits: 
+          memory: '4G'
 networks:
-    sqlnetwork:
-        name: sqlnetwork
+  sqlnetwork:
+    name: sqlnetwork

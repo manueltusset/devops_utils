@@ -1,10 +1,10 @@
-# Processo para uso do sqlserver 19
+# Processo para uso do SqlServer
 
 * Referência de desenvolvimento: https://hub.docker.com/_/microsoft-mssql-server
 
 ## 1. Inicie o container do sqlserver a partir do docker-compose
 
-* Na pasta composes/databases/sqlserver/19 execute: 
+* Na pasta databases/sqlserver/$versao execute: 
 
 ```shell
 docker-compose up -d
@@ -15,15 +15,13 @@ docker-compose up -d
 ### Acesse o container mssql-tools:
 
 ```shell
-docker exec -it mssql-tools bash
+docker exec -it sqlserver bash
 ```
 
 ### Conecte no banco de dados via sqlcmd
 
-* **Importante salientar que deve substituir o parametro {IP} pelo ip copiado no passo 2.**
-
 ```shell
-sqlcmd -S sqlserver19 -U sa -P Sqlserver19
+/opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U sa -P SqlserverDev
 ```
 
 ### Checando funcionamento do banco de dados

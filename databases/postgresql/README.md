@@ -1,10 +1,10 @@
-# Processo para uso do postgresql 12
+# Processo para uso do PostgreSQL
 
 * Referência de desenvolvimento: https://hub.docker.com/_/postgres
 
 ## 1. Inicie o container do postgres e pgadmin a partir do docker-compose
 
-* Na pasta composes/databases/postgresql/12 execute: 
+* Na pasta databases/postgresql/$versao execute: 
 
 ```shell
 docker-compose up -d
@@ -26,7 +26,7 @@ docker-compose up -d
 
 ### Criando TABLESPACES_DATA
 
-1. Na pasta composes/databases/postgresql/12/data/pgdata, crie a pasta TABLESPACES_DATA
+1. Na pasta databases/postgresql/$versao/data/pgdata, crie a pasta TABLESPACES_DATA
 
 2. No pgAdmin 4, na coluna esquerda, clique com o botão direito em "Tablespaces" > "Create" > "Tablespace...".
 
@@ -40,7 +40,7 @@ docker-compose up -d
 
 ### Criando TABLESPACES_INDEXES
 
-1. Na pasta composes/databases/postgresql/12/data/pgdata, crie a pasta TABLESPACES_INDEXES
+1. Na pasta databases/postgresql/$versao/data/pgdata, crie a pasta TABLESPACES_INDEXES
 
 2. No pgAdmin 4, na coluna esquerda, clique com o botão direito em "Tablespaces" > "Create" > "Tablespace...".
 
@@ -63,18 +63,3 @@ docker-compose up -d
 4. Na aba Definition, informe no campo "Tablespace" a TABLESPACES_DATA criada anteriormente.
 
 5. Feito isso, clique em save.
-
-### Restaurando Database
-
-1. Após criar o Database com nome desejado, copie o backup para dentro da pasta data.
-
-2. Entre no container na pasta data do postgresql 12:
-```shell
-docker exec -it postgresql12 bash
-cd /var/lib/postgresql/data/pgdata
-```
-
-3. Execute o seguinte comando para restaurar o backup desejado em cima da base criada:
-```shell
-/usr/lib/postgresql/12/bin/pg_restore -v -j4 --no-owner -h 127.0.0.1 -p 5432 -U <user> -d <database> <bkp>.backup
-```

@@ -1,8 +1,8 @@
 version: "3.7"
 
 services:
-    postgresql14:
-        container_name: postgresql14
+    postgresql:
+        container_name: postgresql
         image: postgres:14.6
         ports:
             - 8080:8080
@@ -18,7 +18,7 @@ services:
         deploy:
             resources: 
                 limits: 
-                    memory: '2G'
+                    memory: '4G'
 networks:
     pgnetwork:
         name: pgnetwork
