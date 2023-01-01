@@ -34,13 +34,13 @@ bash vagrant.sh up
 
 3. O script irá questionar pedindo o número do sistema operacional desejado, assim, deve-se informar conforme a lista de opcões:
 
-![](../docs/images/options_vagrant_linux.png)
+![](../docs/machines/options_vagrant_linux.png)
 
 4. Nesse exemplo informaremos o número 02 para teste.
 
 5. Após feito o passo 4, o script irá pedir qual a interface de rede desejada para o adaptador bridge da máquina virtual, escolha o de sua preferência:
 
-![](../docs/images/select_network_vagrant_linux.png)
+![](../docs/machines/select_network_vagrant_linux.png)
 
 5. Após informado o adaptador de rede, a máquina virtual será criada.
 
