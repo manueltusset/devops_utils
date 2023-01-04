@@ -57,11 +57,17 @@ Vagrant.configure("2") do |config|
     virtualbox.name = "${virtualMachines[$option]}"
   end
 
-
   config.vm.network "public_network"
 
+  config.vm.synced_folder "./scripts", "/scripts"
+
   config.vm.provision "shell", inline: <<-SHELL
-    
+    #!/bin/bash
+    set -ex
+
+    if [[ -f /scripts/custom/custom.sh ]]; then
+        bash /scripts/custom/custom.sh || true
+    fi
   SHELL
 end
 EOF
