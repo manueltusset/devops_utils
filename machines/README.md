@@ -22,14 +22,10 @@ Sendo assim, segue abaixo tutorial de uso e das dependências necessárias:
 ## Provisionando máquina virtual:
 **Nesse caso de uso, estamos usando o virtualbox como provedor das máquinas virtuais**
 
-1. Acesse o diretório que contém o script vagrant.sh (caso ainda não tenha acessado):
+1. Rode o comando para escolher o sistema operacional da máquina virtual que deseja provisionar:
 ```shell
 cd machines/
-```
-
-2. Rode o comando para escolher o sistema operacional da máquina virtual que deseja provisionar:
-```shell
-bash vagrant.sh up
+vagrant up
 ```
 
 3. O script irá questionar pedindo o número do sistema operacional desejado, assim, deve-se informar conforme a lista de opcões:
@@ -49,7 +45,7 @@ bash vagrant.sh up
 1. Após criada a máquina virtual, pode-se conectar na mesma via ssh, assim comecamos novamente executando o script vagrant.sh
 ```shell
 cd machines/
-bash vagrant.sh ssh
+vagrant ssh
 ```
 
 2. Ao executar o script, informe o número do sistema operacional o qual se refere a máquina que você deseja conectar.
@@ -61,7 +57,7 @@ bash vagrant.sh ssh
 1. Para destruir uma máquina virtual com vagrant, deve-se rodar novamente o script vagrant.sh conforme abaixo:
 ```shell
 cd machines/
-bash vagrant.sh destroy
+vagrant destroy
 ```
 
 2. Selecione o número do sistema operacional desejado o qual se refere a máquina virtual criada.
