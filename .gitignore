@@ -2,6 +2,5 @@ databases/**/**/startup
 databases/**/**/data
 databases/**/**/scripts
 
-machines/**/Vagrantfile
 machines/**/.vagrant
 machines/scripts/custom/**
