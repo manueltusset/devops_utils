@@ -37,7 +37,9 @@ done
 read -p "Option:" option
 echo "${vmBox[${virtualMachines[$option]}]}"
 
+rm -rf ~/.vagrant.d/data/machine-index/index* || true
 rm -rf Vagrantfile
+
 cat << EOF > Vagrantfile
 Vagrant.configure("2") do |config|
   
