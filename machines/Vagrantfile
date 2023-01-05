@@ -95,7 +95,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |virtualbox|
     virtualbox.cpus = 4
     virtualbox.memory = "8192"
-    virtualbox.name = serverSelected[:hostname]
+    virtualbox.name = serverSelected[:name]
   end
 
   config.vm.network "public_network"
