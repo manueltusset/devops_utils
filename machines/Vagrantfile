@@ -1,5 +1,9 @@
 Vagrant.configure("2") do |config|
 
+  unless Vagrant.has_plugin?("vagrant-disksize")
+    raise  Vagrant::Errors::VagrantError.new, "vagrant-disksize plugin is missing. Please install it using 'vagrant plugin install vagrant-disksize' and rerun 'vagrant up'"
+  end
+
   servers = [
     { :id => "1", :name => "CentOS 7", :box => "centos/7", :hostname => "centos7", :type => "linux" },
     { :id => "2", :name => "CentOS 8 Stream", :box => "centos/stream8", :hostname => "centos8", :type => "linux" },
@@ -11,8 +15,8 @@ Vagrant.configure("2") do |config|
     { :id => "8", :name => "Red Hat Enterprise Server 8", :box => "generic/rhel8", :hostname => "rhel8", :type => "linux" },
     { :id => "9", :name => "Ubuntu 20.04", :box => "generic/ubuntu2004", :hostname => "ubuntu2004", :type => "linux" },
     { :id => "10", :name => "Ubuntu 22.04", :box => "generic/ubuntu2204", :hostname => "ubuntu2204", :type => "linux" },
-    { :id => "11", :name => "Windows 2019", :box => "StefanScherer/windows_2019", :hostname => "windowsserver2019", :type => "windows"  },
-    { :id => "12", :name => "Windows 2022", :box => "StefanScherer/windows_2022", :hostname => "windowsserver2022", :type => "windows"  }
+    { :id => "11", :name => "Windows 2019", :box => "StefanScherer/windows_2019_docker", :hostname => "windowsserver2019", :type => "windows"  },
+    { :id => "12", :name => "Windows 2022", :box => "StefanScherer/windows_2022_docker", :hostname => "windowsserver2022", :type => "windows"  }
   ]
 
   servers.each do |server|
@@ -35,14 +39,10 @@ Vagrant.configure("2") do |config|
   print " BOX      => " + serverSelected[:box] + "\n"
   print " HOSTNAME => " + serverSelected[:hostname] + "\n"
   print "===========================================\n"
-
-  unless Vagrant.has_plugin?("vagrant-disksize")
-    raise  Vagrant::Errors::VagrantError.new, "vagrant-disksize plugin is missing. Please install it using 'vagrant plugin install vagrant-disksize' and rerun 'vagrant up'"
-  end
   
   config.vm.box = serverSelected[:box]
   config.vm.hostname = serverSelected[:hostname]
-  #config.vm.disk :disk, size: "150GB", primary: true
+  config.vm.disk :disk, size: "150GB", primary: true
   config.disksize.size = '150GB'
 
   config.vm.provider "virtualbox" do |virtualbox|
@@ -53,5 +53,22 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "public_network"
 
-  config.vm.provision "shell", path: "scripts/#{serverSelected[:type]}.#{serverSelected[:type].eql?("windows") ? "ps1" : "sh"}", privileged: true
+  if serverSelected[:type].eql?("windows")
+    config.vm.provision "shell", inline: <<-SHELL
+      \$ErrorActionPreference = "Stop";
+      
+      If (Test-Path -Path C:\\vagrant\\scripts\\custom\\custom.ps1 -PathType Leaf) {
+        Powershell -Command C:\\vagrant\\scripts\\custom\\custom.ps1
+      }
+    SHELL
+  else
+    config.vm.provision "shell", inline: <<-SHELL
+      #!/bin/bash
+
+      if [[ -f /vagrant/scripts/custom/custom.sh ]]; then
+        bash /vagrant/scripts/custom/custom.sh
+      fi
+    SHELL
+  end
+
 end
