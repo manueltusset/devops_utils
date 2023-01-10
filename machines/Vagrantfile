@@ -15,8 +15,8 @@ Vagrant.configure("2") do |config|
     { :id => "8", :name => "Red Hat Enterprise Server 8", :box => "generic/rhel8", :hostname => "rhel8", :type => "linux" },
     { :id => "9", :name => "Ubuntu 20.04", :box => "generic/ubuntu2004", :hostname => "ubuntu2004", :type => "linux" },
     { :id => "10", :name => "Ubuntu 22.04", :box => "generic/ubuntu2204", :hostname => "ubuntu2204", :type => "linux" },
-    { :id => "11", :name => "Windows 2019", :box => "StefanScherer/windows_2019_docker", :hostname => "windowsserver2019", :type => "windows"  },
-    { :id => "12", :name => "Windows 2022", :box => "StefanScherer/windows_2022_docker", :hostname => "windowsserver2022", :type => "windows"  }
+    { :id => "11", :name => "Windows 2019", :box => "StefanScherer/windows_2019_docker", :hostname => "ws2019", :type => "windows"  },
+    { :id => "12", :name => "Windows 2022", :box => "StefanScherer/windows_2022_docker", :hostname => "ws2022", :type => "windows"  }
   ]
 
   servers.each do |server|
@@ -46,8 +46,8 @@ Vagrant.configure("2") do |config|
   config.disksize.size = '150GB'
 
   config.vm.provider "virtualbox" do |virtualbox|
-    virtualbox.cpus = 4
-    virtualbox.memory = "8192"
+    virtualbox.cpus = 8
+    virtualbox.memory = "16384"
     virtualbox.name = serverSelected[:name]
   end
 
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
       \$ErrorActionPreference = "Stop";
       
       If (Test-Path -Path C:\\vagrant\\scripts\\custom\\custom.ps1 -PathType Leaf) {
-        Powershell -Command C:\\vagrant\\scripts\\custom\\custom.ps1
+        C:\\vagrant\\scripts\\custom\\custom.ps1
       }
     SHELL
   else
