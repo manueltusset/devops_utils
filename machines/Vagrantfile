@@ -42,35 +42,35 @@ Vagrant.configure("2") do |config|
   print " HOSTNAME => " + serverSelected[:hostname] + "\n"
   print "===========================================\n"
   
-  config.vm.box = serverSelected[:box]
-  config.vm.hostname = serverSelected[:hostname]
-  config.vm.disk :disk, size: "150GB", primary: true
-  config.disksize.size = '150GB'
+  config.vm.define serverSelected[:name] do |machine|
+    machine.vm.box = serverSelected[:box]
+    machine.vm.hostname = serverSelected[:hostname]
 
-  config.vm.provider "virtualbox" do |virtualbox|
-    virtualbox.cpus = 8
-    virtualbox.memory = "16384"
-    virtualbox.name = serverSelected[:name]
-  end
+    machine.vm.network "public_network"
 
-  config.vm.network "public_network"
+    machine.vm.provider :virtualbox do |vb|
+      vb.memory = "16384"
+      vb.cpus = 8
+      vb.name = serverSelected[:name]
+    end
 
-  if serverSelected[:type].eql?("windows")
-    config.vm.provision "shell", inline: <<-SHELL
-      \$ErrorActionPreference = "Stop";
-      
-      If (Test-Path -Path C:\\vagrant\\scripts\\custom\\custom.ps1 -PathType Leaf) {
-        C:\\vagrant\\scripts\\custom\\custom.ps1
-      }
-    SHELL
-  else
-    config.vm.provision "shell", inline: <<-SHELL
-      #!/bin/bash
-
-      if [[ -f /vagrant/scripts/custom/custom.sh ]]; then
-        bash /vagrant/scripts/custom/custom.sh
-      fi
-    SHELL
+    if serverSelected[:type].eql?("windows")
+      machine.vm.provision "shell", inline: <<-SHELL
+        \$ErrorActionPreference = "Stop";
+        
+        If (Test-Path -Path C:\\vagrant\\scripts\\custom\\custom.ps1 -PathType Leaf) {
+          C:\\vagrant\\scripts\\custom\\custom.ps1
+        }
+      SHELL
+    else
+      machine.vm.provision "shell", inline: <<-SHELL
+        #!/bin/bash
+  
+        if [[ -f /vagrant/scripts/custom/custom.sh ]]; then
+          bash /vagrant/scripts/custom/custom.sh
+        fi
+      SHELL
+    end
   end
 
 end
