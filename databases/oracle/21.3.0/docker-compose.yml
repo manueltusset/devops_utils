@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  oracle:
+    container_name: oracle
+    image: oracle/database:21.3.0-ee
+    privileged: true
+    ports:
+      - 1521:1521
+    volumes:
+      - ./data:/opt/oracle/oradata
+    environment:
+      - ORACLE_PDB=orcl
+      - ORACLE_PWD=111111
+      - ORACLE_CHARACTERSET=AL32UTF8
+    deploy:
+      resources: 
+        limits: 
+          memory: '3G'
