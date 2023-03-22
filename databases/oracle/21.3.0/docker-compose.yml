@@ -9,6 +9,9 @@ services:
       - 1521:1521
     volumes:
       - ./data:/opt/oracle/oradata
+      - ./restore:/opt/oracle/restore
+      - ./backup:/opt/oracle/backup
+      - ./scripts:/opt/oracle/scripts
     environment:
       - ORACLE_PDB=orcl
       - ORACLE_PWD=111111
