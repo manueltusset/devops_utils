@@ -1,5 +1,6 @@
 databases/**/**/startup
 databases/**/**/data
+databases/**/**/restore
 databases/**/**/scripts
 
 machines/**/.vagrant
