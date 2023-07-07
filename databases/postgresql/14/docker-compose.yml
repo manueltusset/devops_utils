@@ -1,25 +1,24 @@
 version: "3.7"
 
 services:
-    postgresql:
-        container_name: postgresql
-        image: postgres:14.6
-        ports:
-            - 8080:8080
-            - 5432:5432
-        networks:
-            - pgnetwork
-        volumes:
-            - ./data:/var/lib/postgresql/data
-            - ./restore:/var/lib/postgresql/restore
-        environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
-            - PGDATA=/var/lib/postgresql/data/pgdata
-        deploy:
-            resources: 
-                limits: 
-                    memory: '4G'
+  postgresql:
+    container_name: postgresql
+    image: postgres:14.6
+    ports:
+      - 5432:5432
+    networks:
+      - pgnetwork
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./restore:/var/lib/postgresql/restore
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    deploy:
+      resources: 
+        limits: 
+          memory: '4G'
 networks:
-    pgnetwork:
-        name: pgnetwork
+  pgnetwork:
+    name: pgnetwork
