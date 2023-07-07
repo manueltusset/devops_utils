@@ -11,6 +11,7 @@ services:
             - pgnetwork
         volumes:
             - ./data:/var/lib/postgresql/data
+            - ./restore:/var/lib/postgresql/restore
         environment:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
