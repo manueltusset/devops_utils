@@ -11,10 +11,11 @@ services:
     volumes:
       - ./data:/var/lib/postgresql/data
       - ./restore:/var/lib/postgresql/restore
+      - ./scripts:/var/lib/postgresql/scripts
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - PGDATA=/var/lib/postgresql/data/pgdata
+      - PGDATA=/var/lib/postgresql/data
     deploy:
       resources: 
         limits: 

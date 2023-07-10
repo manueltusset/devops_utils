@@ -1,27 +1,24 @@
 version: "3.7"
 
 services:
-    oracle19:
-        container_name: oracle19
-        image: manueltusset/oracle:19.3.0-xe
-        privileged: true
-        networks:
-            - oraclenetwork
-        ports:
-            - 1521:1521
-            - 5500:5500
-            - 8081:8081
-        volumes:
-            - ./data:/opt/oracle/oradata
-        environment:
-            - ORACLE_SID=XE
-            - ORACLE_PDB=SE
-            - ORACLE_PWD=111111
-            - ORACLE_CHARACTERSET=AL32UTF8
-        deploy:
-            resources: 
-                limits: 
-                    memory: '3G'
-networks:
-    oraclenetwork:
-        name: oraclenetwork
+  oracle:
+    container_name: oracle
+    image: manueltusset/oracle:19.3.0-xe
+    privileged: true
+    ports:
+      - 1521:1521
+      - 5500:5500
+      - 8081:8081
+    volumes:
+      - ./data:/opt/oracle/oradata
+      - ./restore:/opt/oracle/restore
+      - ./scripts:/opt/oracle/scripts
+    environment:
+      - ORACLE_SID=XE
+      - ORACLE_PDB=SE
+      - ORACLE_PWD=111111
+      - ORACLE_CHARACTERSET=AL32UTF8
+    deploy:
+      resources: 
+        limits: 
+          memory: '3G'

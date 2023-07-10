@@ -14,6 +14,8 @@ services:
       - sqlnetwork
     volumes:
       - ./data:/var/opt/mssql/data
+      - ./restore:/var/opt/mssql/restore
+      - ./scripts:/var/opt/mssql/scripts
     deploy:
       resources: 
         limits: 
