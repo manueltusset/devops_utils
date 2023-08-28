@@ -3,7 +3,7 @@ version: "3.7"
 services:
   oracle:
     container_name: oracle
-    image: oracle/database:21.3.0-ee
+    image: manueltusset/oracle:21.3.0-xe
     privileged: true
     ports:
       - 1521:1521

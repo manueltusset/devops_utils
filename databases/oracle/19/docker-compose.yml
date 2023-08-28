@@ -3,7 +3,7 @@ version: "3.7"
 services:
   oracle:
     container_name: oracle
-    image: manueltusset/oracle:19.3.0-xe
+    image: manueltusset/oracle:19.3.0-ee
     privileged: true
     ports:
       - 1521:1521
@@ -13,6 +13,7 @@ services:
       - ./data:/opt/oracle/oradata
       - ./restore:/opt/oracle/restore
       - ./scripts:/opt/oracle/scripts
+      - ./containers:/opt/oracle/containers
     environment:
       - ORACLE_SID=XE
       - ORACLE_PDB=SE
