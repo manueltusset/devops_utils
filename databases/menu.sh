@@ -30,6 +30,18 @@ function menu() {
 	echo $choice
 }
 
+function inputMenu() {
+	height=15
+	width=40
+
+	user_input=$(dialog --clear \
+										  --title "$1" \
+											--inputbox "$2" \
+											$height $width \
+											2>&1 >/dev/tty)
+	echo "$user_input"
+}
+
 function menuActions() {
 	# Declare an array
 	array=(Up_Database ""
@@ -110,14 +122,66 @@ function downDatabase() {
 	$composeCall -f "$dbChoice/$verChoice/docker-compose.yml" down
 }
 
-function dropDatabase() {
-	upDatabase
+function dropDatabaseOracle() {
 	echo "drop"
 }
 
-function createDatabase() {
+function dropDatabasePostgresql() {
+	echo "drop"
+}
+
+function dropDatabaseSQLServer() {
+	echo "drop"
+}
+
+function dropDatabase() {
 	upDatabase
+	
+	case "$dbChoice" in
+	"oracle")
+		dropDatabaseOracle
+		;;
+	"postgresql")
+		dropDatabasePostgresql
+		;;
+	"sqlserver")
+		dropDatabaseSQLServer
+		;;
+esac
+}
+
+function createDatabaseOracle() {
+	service_name=$(inputMenu "Oracle info" "Enter the desired service name:")
+	tablespace_data=$(inputMenu "" "Oracle info" "Enter the desired tablespace_data:")
+	tablespace_indexes=$(inputMenu "" "Oracle info" "Enter the desired tablespace_indexes:")
+	username=$(inputMenu "" "Oracle info" "Enter the desired username:")
+	password=$(inputMenu "" "Oracle info" "Enter the desired password:")
+	port=$(inputMenu "" "Oracle info" "Enter the desired port:")
+	server=$(inputMenu "" "Oracle info" "Enter the desired server:")
+}
+
+function createDatabasePostgresql() {
 	echo "create"
+}
+
+function createDatabaseSQLServer() {
+	echo "create"
+}
+
+function createDatabase() {
+	#upDatabase
+	
+	case "$dbChoice" in
+	"oracle")
+		createDatabaseOracle
+		;;
+	"postgresql")
+		createDatabasePostgresql
+		;;
+	"sqlserver")
+		createDatabaseSQLServer
+		;;
+esac
 }
 
 function backupDatabase() {

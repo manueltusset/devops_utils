@@ -1,26 +1,21 @@
 version: "3.7"
 
 services:
-    oracle18:
-        container_name: oracle18
-        image: manueltusset/oracle:18.4.0-xe
-        privileged: true
-        networks:
-            - oraclenetwork
-        ports:
-            - 1521:1521
-            - 5500:5500
-        environment:
-            - ORACLE_PWD=111111
-            - ORACLE_CHARACTERSET=AL32UTF8
-        volumes:
-            - ./data:/opt/oracle/oradata
-            - ./scripts:/opt/oracle/scripts/setup
-            - ./startup:/opt/oracle/scripts/startup
-        deploy:
-            resources: 
-                limits: 
-                    memory: '3G'
-networks:
-    oraclenetwork:
-        name: oraclenetwork
+  oracle18:
+    container_name: oracle18
+    image: manueltusset/oracle:18.4.0-xe
+    privileged: true
+    ports:
+      - 1521:1521
+      - 5500:5500
+    environment:
+      - ORACLE_PWD=111111
+      - ORACLE_CHARACTERSET=AL32UTF8
+    volumes:
+      - ./data:/opt/oracle/oradata
+      - ./scripts:/opt/oracle/scripts/setup
+      - ./startup:/opt/oracle/scripts/startup
+    deploy:
+      resources: 
+        limits: 
+          memory: '6G'
