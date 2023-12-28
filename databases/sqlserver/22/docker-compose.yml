@@ -12,6 +12,7 @@ services:
       - MSSQL_PID=Developer
     volumes:
       - ./data:/var/opt/mssql/data
+      - ./restore:/var/opt/mssql/restore
     deploy:
       resources: 
         limits: 
